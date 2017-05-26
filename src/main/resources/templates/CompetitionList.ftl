@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Competition list</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<!--p th:text="'Hello, ' + ${name} + '!'" /-->
+    <#list competitions as competition>
+        ${competition.id}: ${competition.title}
+    </#list>
 </body>
 </html>
