@@ -12,10 +12,10 @@ public class CompetitionListController {
     @RequestMapping("/")
     public String list(Model model) {
         Competition c = new Competition();
-        c.setId(10000);
+        c.setId(11000);
         c.setTitle("Test competition");
 
         model.addAttribute("competitions", Collections.singletonList(c));
-        return "CompetitionList";
+        return "competition/list";
     }
 }
