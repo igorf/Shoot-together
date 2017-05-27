@@ -12,9 +12,9 @@ import java.util.Collections;
 @Controller
 @RequestMapping("/competition")
 public class CompetitionController {
-    @RequestMapping("/")
-    public String list(Model model) {
 
+    @RequestMapping("/list")
+    public String list(Model model) {
         CompetitionOrganizer organizer = new CompetitionOrganizer();
         organizer.setId(1);
         organizer.setTitle("Unknown club");
