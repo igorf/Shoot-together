@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CompetitionShotController {
 
-    @RequestMapping("/competition/fire/{competitionId}/{x}/{y}/{result}")
+    @RequestMapping("/competition/{competitionId}/fire/{x}/{y}/{result}")
     public ResponseEntity add(@PathVariable long competitionId, @PathVariable float x, @PathVariable float y, @PathVariable float result) {
         //TODO: create shot
         Shot s = new Shot();
