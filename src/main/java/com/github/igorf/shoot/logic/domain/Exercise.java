@@ -10,4 +10,6 @@ public class Exercise {
     private int shots;
     private int timeLimit; //between first and last shot
     private float caliber;
+    private int distance;
+    private Target target;
 }
