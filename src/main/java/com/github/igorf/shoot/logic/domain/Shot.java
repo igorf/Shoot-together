@@ -7,7 +7,7 @@ import java.util.Date;
 public class Shot {
     private long id;
     private Competition competition;
-    private Competitor competitor;
+    private Profile competitor;
     private float x;
     private float y;
     private float result;

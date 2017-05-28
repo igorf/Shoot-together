@@ -12,5 +12,5 @@ public class Competition {
     private CompetitionOrganizer organizer;
     private Date start;
     private Date end;
-    private List<Competitor> competitors;
+    private List<CompetitionResult> results;
 }

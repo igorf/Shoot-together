@@ -9,4 +9,5 @@ public class Exercise {
     private String description;
     private int shots;
     private int timeLimit; //between first and last shot
+    private float caliber;
 }
