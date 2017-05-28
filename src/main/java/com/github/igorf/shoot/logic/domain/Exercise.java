@@ -8,4 +8,5 @@ public class Exercise {
     private String title;
     private String description;
     private int shots;
+    private int timeLimit; //between first and last shot
 }
