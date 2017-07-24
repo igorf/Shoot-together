@@ -24,28 +24,28 @@
                 <div class="form-group">
                     <label for="inputShots" class="col-lg-2 control-label">Shots number</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputShots" name="shots" value="${(exercise.shots)!}">
+                        <input type="number" step="any" class="form-control" id="inputShots" name="shots" value="${(exercise.shots)!}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputTimeLimit" class="col-lg-2 control-label">Time limit</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputTimeLimit" name="timeLimit" value="${(exercise.timeLimit)!}">
+                        <input type="number" step="any" class="form-control" id="inputTimeLimit" name="timeLimit" value="${(exercise.timeLimit)!}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputCaliber" class="col-lg-2 control-label">Caliber, mm</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputCaliber" name="caliber" value="${(exercise.caliber)!}">
+                        <input type="number" step="any" class="form-control" id="inputCaliber" name="caliber" value="${((exercise.caliber)!"")?string.computer}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputDistance" class="col-lg-2 control-label">Distance, m</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputDistance" name="distance" value="${(exercise.distance)!}">
+                        <input type="number" step="any" class="form-control" id="inputDistance" name="distance" value="${((exercise.distance)!)?string.computer}">
                     </div>
                 </div>
 

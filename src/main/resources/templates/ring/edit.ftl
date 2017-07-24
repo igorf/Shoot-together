@@ -28,14 +28,14 @@
                 <div class="form-group">
                     <label for="inputDenomination" class="col-lg-2 control-label">Denomination</label>
                     <div class="col-lg-10">
-                        <input type="text" name="denomination" class="form-control" id="inputDenomination" value="${(ring.denomination)!}">
+                        <input type="number" step="any" name="denomination" class="form-control" id="inputDenomination" value="${(ring.denomination)!}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputDiameter" class="col-lg-2 control-label">Diameter</label>
                     <div class="col-lg-10">
-                        <input type="text" name="diameter" class="form-control" id="inputDiameter" value="${(ring.diameter)!}">
+                        <input type="number" step="any" name="diameter" class="form-control" id="inputDiameter" value="${((ring.diameter)!)?string.computer}">
                     </div>
                 </div>
 
