@@ -2,20 +2,13 @@ package com.github.igorf.shoot.logic.service;
 
 import com.github.igorf.shoot.logic.dao.ExerciseDao;
 import com.github.igorf.shoot.logic.dao.TargetDao;
-import com.github.igorf.shoot.logic.dao.TargetRingDao;
 import com.github.igorf.shoot.logic.domain.Exercise;
 import com.github.igorf.shoot.logic.domain.Target;
-import com.github.igorf.shoot.logic.domain.TargetRing;
-import com.github.igorf.shoot.misc.RingColor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.ManyToMany;
-import javax.validation.constraints.NotNull;
-import java.util.Collection;
-import java.util.List;
 import java.util.logging.Logger;
 
 @Service
