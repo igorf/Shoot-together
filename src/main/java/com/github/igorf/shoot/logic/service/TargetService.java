@@ -6,6 +6,7 @@ import com.github.igorf.shoot.logic.domain.Target;
 import com.github.igorf.shoot.logic.domain.TargetRing;
 import com.github.igorf.shoot.misc.RingColor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.logging.Logger;
@@ -73,5 +74,9 @@ public class TargetService {
             }
         }
         return false;
+    }
+
+    public Iterable<Target> listToChoice() {
+        return targetDao.findAll(new Sort(Sort.Direction.ASC, "title"));
     }
 }
