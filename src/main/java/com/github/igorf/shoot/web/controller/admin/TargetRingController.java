@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.logging.Logger;
 
 @Controller
-@RequestMapping("/ring")
+@RequestMapping("/admin/ring")
 public class TargetRingController {
     @Autowired private TargetRingDao targetRingDao;
     @Autowired private TargetDao targetDao;
@@ -36,7 +36,7 @@ public class TargetRingController {
         } catch (Exception ex) {
             logger.warning(ex.getMessage());
         }
-        return "redirect:/target/list";
+        return "redirect:/admin/target/list";
     }
 
     @RequestMapping("/create/{targetId}")

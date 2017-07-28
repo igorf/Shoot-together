@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.logging.Logger;
 
 @Controller
-@RequestMapping("/target")
+@RequestMapping("/admin/target")
 public class TargetController {
     @Autowired private TargetDao targetDao;
     @Autowired private TargetService targetService;
@@ -33,7 +33,7 @@ public class TargetController {
     @RequestMapping("/delete/{id}")
     public String delete(@PathVariable("id") long id) {
         targetService.removeTarget(id);
-        return "redirect:/target/list";
+        return "redirect:/admin/target/list";
     }
 
     @RequestMapping("/create")

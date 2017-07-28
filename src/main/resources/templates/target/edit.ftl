@@ -3,12 +3,12 @@
 <@admin_layout title="Edit target ${(target.title)!}">
 
     <ul class="breadcrumb">
-        <li><a href="/target/list">Target list</a></li>
+        <li><a href="/admin/target/list">Target list</a></li>
         <li class="active">Edit target</li>
     </ul>
 
     <div class="well">
-        <form class="form-horizontal" method="post" action="/target/save">
+        <form class="form-horizontal" method="post" action="/admin/target/save">
             <input type="hidden" name="id" value="${(target.id)!}">
             <fieldset>
                 <legend>Edit target ${(target.title)!}</legend>
@@ -25,7 +25,7 @@
                             Save
                         </button>
                         <#if target ??>
-                            <a class="btn btn-sm btn-danger" href="/target/delete/#{(target.id)!}">
+                            <a class="btn btn-sm btn-danger" href="/admin/target/delete/#{(target.id)!}">
                                 <span class="glyphicon glyphicon-erase"></span>
                                 Delete
                             </a>
@@ -47,7 +47,7 @@
             </tr>
             <#list target.rings as ring>
                 <tr>
-                    <td><a href="/ring/view/${(ring.id)!}">${ring.id}</a></td>
+                    <td><a href="/admin/ring/view/${(ring.id)!}">${ring.id}</a></td>
                     <td>${ring.denomination}</td>
                     <td>${ring.diameter}</td>
                     <td>${ring.color}</td>
@@ -55,7 +55,7 @@
             </#list>
         </table>
         <div class="form-group">
-            <a class="btn btn-sm btn-default" href="/ring/create/#{(target.id)!}">
+            <a class="btn btn-sm btn-default" href="/admin/ring/create/#{(target.id)!}">
                 <span class="glyphicon glyphicon-plus-sign"></span>
                 Add new ring
             </a>

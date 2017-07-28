@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.logging.Logger;
 
 @Controller
-@RequestMapping("/exercise")
+@RequestMapping("/admin/exercise")
 public class ExerciseController {
     @Autowired private ExerciseService exerciseService;
     @Autowired private TargetService targetService;
@@ -31,7 +31,7 @@ public class ExerciseController {
     @RequestMapping("/delete/{id}")
     public String delete(@PathVariable("id") long id) {
         exerciseService.removeExercise(id);
-        return "redirect:/exercise/list";
+        return "redirect:/admin/exercise/list";
     }
 
     @RequestMapping("/create")
@@ -71,6 +71,6 @@ public class ExerciseController {
             model.addAttribute("targets", targetService.listToChoice());
             return "/exercise/edit";
         }
-        return "redirect:/exercise/list";
+        return "redirect:/admin/exercise/list";
     }
 }

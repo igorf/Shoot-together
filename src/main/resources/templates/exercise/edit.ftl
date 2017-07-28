@@ -5,12 +5,12 @@
 <@admin_layout title="Edit exercise ${(exercise.title)!}">
 
     <ul class="breadcrumb">
-        <li><a href="/exercise/list">Exercise list</a></li>
+        <li><a href="/admin/exercise/list">Exercise list</a></li>
         <li class="active">Edit exercise</li>
     </ul>
 
     <div class="well">
-        <form class="form-horizontal" method="post" action="/exercise/save">
+        <form class="form-horizontal" method="post" action="/admin/exercise/save">
             <input type="hidden" name="id" value="${(exercise.id)!}">
             <fieldset>
                 <legend>Edit exercise ${(exercise.title)!}</legend>
@@ -75,7 +75,7 @@
                             Save
                         </button>
                         <#if exercise ??>
-                            <a class="btn btn-sm btn-danger" href="/exercise/delete/#{(exercise.id)!}">
+                            <a class="btn btn-sm btn-danger" href="/admin/exercise/delete/#{(exercise.id)!}">
                                 <span class="glyphicon glyphicon-erase"></span>
                                 Delete
                             </a>

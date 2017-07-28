@@ -5,8 +5,8 @@
 <@admin_layout title="Edit target ${(target.title)!}">
 
     <ul class="breadcrumb">
-        <li><a href="/target/list">Target list</a></li>
-        <li><a href="/target/view/${(target.id)!}">Edit target ${(target.title)!}</a></li>
+        <li><a href="/admin/target/list">Target list</a></li>
+        <li><a href="/admin/target/view/${(target.id)!}">Edit target ${(target.title)!}</a></li>
         <#if ring ??>
             <li class="active">Edit ring ${ring.denomination}</li>
         <#else>
@@ -15,7 +15,7 @@
     </ul>
 
     <div class="well">
-        <form class="form-horizontal" action="/ring/save" method="post">
+        <form class="form-horizontal" action="/admin/ring/save" method="post">
             <input type="hidden" name="targetId" value="${(target.id)!"-1"}">
             <input type="hidden" name="ringId" value="${(ring.id)!"-1"}">
             <fieldset>
@@ -61,7 +61,7 @@
                             Save
                         </button>
                         <#if ring ??>
-                            <a class="btn btn-sm btn-danger" href="/ring/delete/#{(ring.id)!}">
+                            <a class="btn btn-sm btn-danger" href="/admin/ring/delete/#{(ring.id)!}">
                                 <span class="glyphicon glyphicon-erase"></span>
                                 Delete
                             </a>

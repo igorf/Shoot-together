@@ -14,17 +14,17 @@
         </tr>
         <#list exercises.content as exercise>
             <tr>
-                <td><a href="/exercise/view/${(exercise.id)!}">${(exercise.id)!}</a></td>
+                <td><a href="/admin/exercise/view/${(exercise.id)!}">${(exercise.id)!}</a></td>
                 <td>${exercise.title}</td>
                 <td>${exercise.shots}</td>
                 <td>${exercise.timeLimit}</td>
                 <td>${exercise.distance}</td>
-                <td><a href="/target/view/${(exercise.target.id)!}">${(exercise.target.title)!"UNDEFINED"}</a></td>
+                <td><a href="/admin/target/view/${(exercise.target.id)!}">${(exercise.target.title)!"UNDEFINED"}</a></td>
             </tr>
         </#list>
     </table>
     <p>
-        <a class="btn btn-sm btn-primary" href="/exercise/create">
+        <a class="btn btn-sm btn-primary" href="/admin/exercise/create">
             <span class="glyphicon glyphicon-plus"></span>
             Add new exercise
         </a>

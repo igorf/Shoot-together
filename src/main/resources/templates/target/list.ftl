@@ -10,13 +10,13 @@
         </tr>
         <#list targets as target>
             <tr>
-                <td><a href="/target/view/${(target.id)!}">${target.id}</a></td>
+                <td><a href="/admin/target/view/${(target.id)!}">${target.id}</a></td>
                 <td>${target.title}</td>
             </tr>
         </#list>
     </table>
     <p>
-        <a class="btn btn-sm btn-primary" href="/target/create">
+        <a class="btn btn-sm btn-primary" href="/admin/target/create">
             <span class="glyphicon glyphicon-plus"></span>
             Add new target
         </a>
