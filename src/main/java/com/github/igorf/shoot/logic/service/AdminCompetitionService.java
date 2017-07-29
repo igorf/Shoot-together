@@ -20,13 +20,15 @@ public class AdminCompetitionService {
     public Competition createCompetition(String title, Long exerciseId, Date from, Date to) throws Exception {
         Competition competition = new Competition();
         Exercise exercise = exerciseDao.findOne(exerciseId);
-        competition.setTitle(title);
-        competition.setExercise(exercise);
-        competition.setStart(from);
-        competition.setEnd(to);
-        checkCompetitionBeforeSave(competition);
-        competition = competitionDao.save(competition);
-        return competition;
+        return saveCompetition(competition, title, exercise, from, to);
+    }
+
+    public void createMultiCompetition(String title, long[] exerciseIds, Date from, Date to) throws Exception {
+        for (long exerciseId: exerciseIds) {
+            Competition competition = new Competition();
+            Exercise exercise = exerciseDao.findOne(exerciseId);
+            saveCompetition(competition, title + " (" + exercise.getTitle() + ")", exercise, from, to);
+        }
     }
 
     public Competition updateCompetition(Long competitionId, String title, Long exerciseId, Date from, Date to) throws Exception {
@@ -35,13 +37,7 @@ public class AdminCompetitionService {
             throw new Exception("Competition with ID " + competitionId + " not found");
         }
         Exercise exercise = exerciseDao.findOne(exerciseId);
-        competition.setTitle(title);
-        competition.setExercise(exercise);
-        competition.setStart(from);
-        competition.setEnd(to);
-        checkCompetitionBeforeSave(competition);
-        competition = competitionDao.save(competition);
-        return competition;
+        return saveCompetition(competition, title, exercise, from, to);
     }
 
     public void removeCompetition(long id) throws Exception {
@@ -65,5 +61,17 @@ public class AdminCompetitionService {
         if (competition.getEnd().getTime() < competition.getStart().getTime()) {
             throw new Exception("Competition must have at least 1 day long");
         }
+    }
+
+    private Competition saveCompetition(Competition competition, String title, Exercise exercise, Date from, Date to) throws Exception {
+        if (competition == null) {
+            competition = new Competition();
+        }
+        competition.setTitle(title);
+        competition.setExercise(exercise);
+        competition.setStart(from);
+        competition.setEnd(to);
+        checkCompetitionBeforeSave(competition);
+        return competitionDao.save(competition);
     }
 }

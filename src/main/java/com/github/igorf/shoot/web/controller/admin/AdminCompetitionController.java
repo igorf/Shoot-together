@@ -5,6 +5,7 @@ import com.github.igorf.shoot.logic.service.AdminCompetitionService;
 import com.github.igorf.shoot.logic.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class AdminCompetitionController {
     private Logger logger = Logger.getLogger(AdminCompetitionController.class.getName());
 
     @RequestMapping("/list")
-    public String list(Model model, @PageableDefault(value = 30) Pageable pageable) {
+    public String list(Model model, @PageableDefault(value = 30, sort = {"end"}, direction = Sort.Direction.DESC) Pageable pageable) {
         model.addAttribute("competitions", competitionService.listPage(pageable));
         return "/admin-competition/list";
     }
@@ -49,6 +50,12 @@ public class AdminCompetitionController {
         return "/admin-competition/edit";
     }
 
+    @RequestMapping("/multicreate")
+    public String multiCreate(Model model) {
+        model.addAttribute("exercises", exerciseService.listToChoice());
+        return "/admin-competition/multiadd";
+    }
+
     @RequestMapping("/view/{id}")
     public String view(Model model, @PathVariable("id") long id) {
         Competition competition = competitionService.findById(id);
@@ -61,7 +68,25 @@ public class AdminCompetitionController {
         return "/admin-competition/edit";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/multisave", method = RequestMethod.POST)
+    public String multiSave(
+            final RedirectAttributes flash,
+            @RequestParam("title") String title,
+            @RequestParam(value="exerciseId[]") long[] exerciseIds,
+            @RequestParam("start") @DateTimeFormat(pattern="dd.MM.yyyy")Date start,
+            @RequestParam("end") @DateTimeFormat(pattern="dd.MM.yyyy")Date end
+    ) {
+        try {
+            competitionService.createMultiCompetition(title, exerciseIds, start, end);
+        } catch (Exception ex) {
+            flash.addFlashAttribute("errorMessage", ex.getMessage());
+            logger.warning(ex.getMessage());
+        }
+
+        return "redirect:/admin/competition/list";
+    }
+
+    @RequestMapping(value = "/mu", method = RequestMethod.POST)
     public String save(
             Model model,
             final RedirectAttributes flash,

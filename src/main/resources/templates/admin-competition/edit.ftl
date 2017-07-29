@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="selectTarget" class="col-lg-2 control-label">Target</label>
+                    <label for="selectTarget" class="col-lg-2 control-label">Exercise</label>
                     <div class="col-lg-10">
                         <select class="form-control" id="selectTarget" name="exerciseId">
                         <#list exercises as exercise>

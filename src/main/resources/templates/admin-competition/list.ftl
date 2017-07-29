@@ -26,5 +26,9 @@
             <span class="glyphicon glyphicon-plus"></span>
             Add new competition
         </a>
+        <a class="btn btn-sm btn-primary" href="/admin/competition/multicreate">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add multi competition
+        </a>
     </p>
 </@admin_layout>
