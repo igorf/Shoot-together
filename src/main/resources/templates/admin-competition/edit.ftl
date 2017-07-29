@@ -14,7 +14,7 @@
         <form class="form-horizontal" method="post" action="/admin/competition/save">
             <input type="hidden" name="id" value="${(competition.id)!}">
             <fieldset>
-                <legend>Edit exercise ${(competition.title)!}</legend>
+                <legend>Edit competition ${(competition.title)!}</legend>
 
                 <div class="form-group">
                     <label for="inputTitle" class="col-lg-2 control-label">Title</label>
@@ -26,14 +26,14 @@
                 <div class="form-group">
                     <label for="inputStart" class="col-lg-2 control-label">Starts at</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputStart" name="start" value="${(competition.start)!}">
+                        <input type="text" placeholder="DD.MM.YYYY" class="form-control" id="inputStart" name="start" value="${(competition.start?string["dd.MM.yyyy"])!}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputFinish" class="col-lg-2 control-label">Finished at</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputFinish" name="finish" value="${(competition.end)!}">
+                        <input type="text" placeholder="DD.MM.YYYY" class="form-control" id="inputFinish" name="end" value="${(competition.end?string["dd.MM.yyyy"])!}">
                     </div>
                 </div>
 

@@ -8,7 +8,7 @@
     Targets
 </a>
 <hr>
-<a href="/admin/target/list" class="btn btn-default btn-sm btn-block btn-info">
+<a href="/admin/competition/list" class="btn btn-default btn-sm btn-block btn-info">
     <span class="glyphicon glyphicon-calendar"></span>
     Competitions
 </a>

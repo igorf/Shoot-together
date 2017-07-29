@@ -16,8 +16,8 @@
                 <td><a href="/admin/competition/view/${(competition.id)!}">${(competition.id)!}</a></td>
                 <td>${competition.title}</td>
                 <td>${competition.exercise.title}</td>
-                <td>${competition.start}</td>
-                <td>${competition.end}</td>
+                <td>${competition.start?string["dd.MM.yyyy"]}</td>
+                <td>${competition.end?string["dd.MM.yyyy"]}</td>
             </tr>
         </#list>
     </table>
