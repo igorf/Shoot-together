@@ -18,6 +18,14 @@
                         <input type="text" class="form-control" id="inputTitle" name="title" value="${(target.title)!}">
                     </div>
                 </div>
+                <#if target ?? >
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Target</label>
+                        <div class="col-lg-10">
+                            <#include "../components/target.ftl">
+                        </div>
+                    </div>
+                </#if>
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
                         <button type="submit" class="btn btn-primary btn-sm">

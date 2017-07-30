@@ -2,16 +2,13 @@
 <#-- @ftlvariable name="competition" type="com.github.igorf.shoot.logic.domain.Competition" -->
 <#-- @ftlvariable name="isMutable" type="boolean" -->
 
-<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
-<script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-
 <#assign selectedExerciseId>${(competition.exercise.id)!-1}</#assign>
 <#include '../layout/admin.ftl'>
 <@admin_layout title="Edit competition ${(competition.title)!}">
+
+    <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 
     <ul class="breadcrumb">
         <li><a href="/admin/competition/list">Competition list</a></li>

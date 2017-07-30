@@ -31,7 +31,7 @@ public class TargetRingController {
             if (ring != null) {
                 long targetId = ring.getTarget().getId();
                 targetRingDao.delete(ring);
-                return "redirect:/target/view/" + targetId;
+                return "redirect:/admin/target/view/" + targetId;
             }
         } catch (Exception ex) {
             logger.warning(ex.getMessage());
@@ -55,7 +55,6 @@ public class TargetRingController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String edit(
-            Model model,
             @RequestParam(value = "targetId", required = false, defaultValue = "-1") long targetId,
             @RequestParam(value = "ringId", required = false, defaultValue = "-1") long ringId,
             @RequestParam("diameter") float diameter,
@@ -67,7 +66,7 @@ public class TargetRingController {
 
         if (ringId == -1) {
             target = targetDao.findOne(targetId);
-            ring = targetService.addRingToTarget(targetId, denomination, diameter, RingColor.values()[color]);
+            targetService.addRingToTarget(targetId, denomination, diameter, RingColor.values()[color]);
         } else {
             ring = targetRingDao.findOne(ringId);
             ring.setDenomination(denomination);
@@ -77,8 +76,6 @@ public class TargetRingController {
             target = ring.getTarget();
         }
 
-        model.addAttribute("target", target);
-        model.addAttribute("ring", ring);
-        return "/ring/view/" + ring.getId();
+        return "redirect:/admin/target/view/" + target.getId();
     }
 }

@@ -7,6 +7,7 @@
         <title>${title}</title>
         <link rel="stylesheet" type="text/css" href="https://bootswatch.com/flatly/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/css/app.css" />
+        <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
     </head>
 
     <body>
@@ -37,7 +38,7 @@
             </div>
             <#nested>
         </div>
-        <script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     </body>
 </html>
 </#macro>
