@@ -1,6 +1,14 @@
 <#-- @ftlvariable name="exercises" type="java.lang.Iterable<com.github.igorf.shoot.logic.domain.Competition>" -->
 <#-- @ftlvariable name="competition" type="com.github.igorf.shoot.logic.domain.Competition" -->
 <#-- @ftlvariable name="isMutable" type="boolean" -->
+
+<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+
 <#include '../layout/admin.ftl'>
 <@admin_layout title="Add competitions">
 
@@ -26,6 +34,11 @@
                     <div class="col-lg-10">
                         <input type="text" placeholder="DD.MM.YYYY" class="form-control" id="inputStart" name="start">
                     </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#inputStart').datetimepicker({format: 'DD.MM.YYYY'});
+                        });
+                    </script>
                 </div>
 
                 <div class="form-group">
@@ -33,6 +46,11 @@
                     <div class="col-lg-10">
                         <input type="text" placeholder="DD.MM.YYYY" class="form-control" id="inputFinish" name="end">
                     </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#inputFinish').datetimepicker({format: 'DD.MM.YYYY'});
+                        });
+                    </script>
                 </div>
 
                 <div class="form-group">

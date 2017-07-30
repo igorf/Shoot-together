@@ -86,7 +86,7 @@ public class AdminCompetitionController {
         return "redirect:/admin/competition/list";
     }
 
-    @RequestMapping(value = "/mu", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(
             Model model,
             final RedirectAttributes flash,
