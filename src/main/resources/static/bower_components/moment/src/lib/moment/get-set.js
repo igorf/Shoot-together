@@ -1,6 +1,6 @@
-import { normalizeUnits, normalizeObjectUnits } from '../units/aliases';
-import { getPrioritizedUnits } from '../units/priorities';
-import { hooks } from '../utils/hooks';
+import {normalizeObjectUnits, normalizeUnits} from '../units/aliases';
+import {getPrioritizedUnits} from '../units/priorities';
+import {hooks} from '../utils/hooks';
 import isFunction from '../utils/is-function';
 
 

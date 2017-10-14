@@ -16,7 +16,7 @@ public class CompetitionResult {
     private long id;
     @NotNull
     @OneToOne
-    private Profile competitor;
+    private Competitor competitor;
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="competition_id")
     private Competition competition;

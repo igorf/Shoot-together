@@ -1,5 +1,4 @@
 import toInt from '../utils/to-int';
-import {Duration} from './constructor';
 import {createDuration} from './create';
 
 var ordering = ['year', 'quarter', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'];

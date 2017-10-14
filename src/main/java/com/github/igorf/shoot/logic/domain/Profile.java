@@ -2,11 +2,9 @@ package com.github.igorf.shoot.logic.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Data
 @Entity
@@ -15,11 +13,11 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @NotNull
-    private String firstname;
-    @NotNull
-    private String lastname;
-    @NotNull
     private String login;
     @NotNull
     private String password;
+    @Transient private String passwordConfirm;
+    @ManyToMany
+    @JoinTable(name = "profile_role", joinColumns = @JoinColumn(name = "profile_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 }

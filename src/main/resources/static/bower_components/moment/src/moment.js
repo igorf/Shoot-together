@@ -4,50 +4,47 @@
 //! license : MIT
 //! momentjs.com
 
-import { hooks as moment, setHookCallback } from './lib/utils/hooks';
-
-moment.version = '2.18.1';
-
+import {hooks as moment, setHookCallback} from './lib/utils/hooks';
 import {
-    min,
-    max,
-    now,
-    isMoment,
-    momentPrototype as fn,
-    createUTC       as utc,
-    createUnix      as unix,
-    createLocal     as local,
     createInvalid   as invalid,
-    createInZone    as parseZone
+    createInZone    as parseZone,
+    createLocal     as local,
+    createUnix      as unix,
+    createUTC       as utc,
+    isMoment,
+    max,
+    min,
+    momentPrototype as fn,
+    now
 } from './lib/moment/moment';
 
-import {
-    getCalendarFormat
-} from './lib/moment/calendar';
+import {getCalendarFormat} from './lib/moment/calendar';
 
 import {
     defineLocale,
-    updateLocale,
-    getSetGlobalLocale as locale,
     getLocale          as localeData,
+    getSetGlobalLocale as locale,
     listLocales        as locales,
     listMonths         as months,
     listMonthsShort    as monthsShort,
     listWeekdays       as weekdays,
     listWeekdaysMin    as weekdaysMin,
-    listWeekdaysShort  as weekdaysShort
+    listWeekdaysShort  as weekdaysShort,
+    updateLocale
 } from './lib/locale/locale';
 
 import {
-    isDuration,
     createDuration as duration,
     getSetRelativeTimeRounding as relativeTimeRounding,
-    getSetRelativeTimeThreshold as relativeTimeThreshold
+    getSetRelativeTimeThreshold as relativeTimeThreshold,
+    isDuration
 } from './lib/duration/duration';
 
-import { normalizeUnits } from './lib/units/units';
+import {normalizeUnits} from './lib/units/units';
 
 import isDate from './lib/utils/is-date';
+
+moment.version = '2.18.1';
 
 setHookCallback(local);
 

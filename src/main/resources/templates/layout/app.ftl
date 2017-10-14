@@ -1,3 +1,6 @@
+<!--#assign security=JspTaglibs["classpath:security.tld"] /-->
+<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] >
+
 <#macro layout title>
 <!doctype html>
 <html>
@@ -28,7 +31,12 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Login</a></li>
+                        <@security.authorize access="isAuthenticated()">
+                            <li><a href="/logout">logout</a></li>
+                        </@security.authorize>
+                        <@security.authorize access="! isAuthenticated()">
+                            <li><a href="/login">login</a></li>
+                        </@security.authorize>
                     </ul>
                 </div>
             </div>
