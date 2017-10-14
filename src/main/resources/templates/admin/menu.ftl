@@ -12,3 +12,12 @@
     <span class="glyphicon glyphicon-calendar"></span>
     Competitions
 </a>
+<hr>
+<a href="/admin/role/list" class="btn btn-default btn-sm btn-block btn-info">
+    <span class="glyphicon glyphicon-king"></span>
+    Roles
+</a>
+<a href="/admin/profile/list" class="btn btn-default btn-sm btn-block btn-info">
+    <span class="glyphicon glyphicon-user"></span>
+    Profiles
+</a>

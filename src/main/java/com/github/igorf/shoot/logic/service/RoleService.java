@@ -5,19 +5,25 @@ import com.github.igorf.shoot.logic.domain.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.logging.Logger;
-
 @Service
 public class RoleService {
     @Autowired private RoleDao roleDao;
 
-    private Logger logger = Logger.getLogger(RoleService.class.getName());
-
-    public Role createRole(Role role) {
+    public Role saveRole(Role role) {
         return roleDao.save(role);
+    }
+
+    public void deleteRoleByID(Long id) {
+        if (id != null) {
+            roleDao.delete(id);
+        }
     }
 
     public Iterable<Role> findAll() {
         return roleDao.findAll();
+    }
+
+    public Role findByName(String name) {
+        return roleDao.findByName(name);
     }
 }

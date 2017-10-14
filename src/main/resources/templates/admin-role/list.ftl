@@ -1,7 +1,7 @@
 <#-- @ftlvariable name="roles" type="java.lang.Iterable<com.github.igorf.shoot.logic.domain.Role>" -->
 <#include '../layout/admin.ftl'>
 <@admin_layout title="Roles">
-    <h2>Competitions</h2>
+    <h2>Roles</h2>
 
     <table class="table table-bordered table-striped">
         <tr>
