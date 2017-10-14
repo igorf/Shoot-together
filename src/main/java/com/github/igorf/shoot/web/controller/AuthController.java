@@ -33,7 +33,7 @@ public class AuthController {
             return "auth/registration";
         }
 
-        profileService.createProfile(userForm);
+        profileService.saveProfile(userForm);
         securityService.autologin(userForm.getLogin(), userForm.getPasswordConfirm());
 
         return "redirect:/";

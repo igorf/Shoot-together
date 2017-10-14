@@ -11,7 +11,7 @@ import java.util.Set;
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     @NotNull
     private String login;
     @NotNull
