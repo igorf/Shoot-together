@@ -1,17 +1,20 @@
 package com.github.igorf.shoot.logic.service;
 
 import com.github.igorf.shoot.logic.dao.ProfileDao;
+import com.github.igorf.shoot.logic.domain.Competitor;
 import com.github.igorf.shoot.logic.domain.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProfileService {
     @Autowired private ProfileDao profileDao;
     @Autowired private BCryptPasswordEncoder passwordEncoder;
+    @Autowired private CompetitorService competitorService;
 
     public Profile saveProfile(Profile profile) {
         if (profile.getId() == null) {
@@ -30,8 +33,14 @@ public class ProfileService {
         return profileDao.findOne(id);
     }
 
+    @Transactional
     public void deleteProfileByID(Long id) {
         if (id != null) {
+            Profile p = findByID(id);
+            Competitor c = competitorService.getByProfile(p);
+            if (c != null) {
+                c.setProfile(null);
+            }
             profileDao.delete(id);
         }
     }

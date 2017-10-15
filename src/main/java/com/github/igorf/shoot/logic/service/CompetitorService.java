@@ -33,4 +33,8 @@ public class CompetitorService {
         }
         return competitorDao.save(competitor);
     }
+
+    public Competitor getByProfile(Profile profile) {
+        return competitorDao.findByProfile(profile);
+    }
 }

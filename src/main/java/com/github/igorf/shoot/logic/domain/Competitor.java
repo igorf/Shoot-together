@@ -11,7 +11,6 @@ public class Competitor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotNull
     @OneToOne
     private Profile profile;
     @NotNull
