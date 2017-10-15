@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RoleService {
+    private static final String COMPETITOR_ROLE_NAME = "ROLE_COMPETITOR";
     @Autowired private RoleDao roleDao;
 
     public Role saveRole(Role role) {
@@ -25,5 +26,9 @@ public class RoleService {
 
     public Role findByName(String name) {
         return roleDao.findByName(name);
+    }
+
+    public Role getCompetitorRole() {
+        return findByName(COMPETITOR_ROLE_NAME);
     }
 }

@@ -20,7 +20,12 @@ public class CompetitorProfileController {
 
     @RequestMapping("/profile")
     public String index(Model model) {
-        model.addAttribute("competitor", competitorService.getCurrent());
+        Competitor competitor = competitorService.getCurrent();
+        if (competitor == null) {
+            competitor = new Competitor();
+            competitor.setProfile(securityService.getLoggedProfile());
+        }
+        model.addAttribute("competitor", competitor);
         return "profile/my";
     }
 
