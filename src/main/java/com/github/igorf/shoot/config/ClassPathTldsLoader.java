@@ -1,12 +1,11 @@
 package com.github.igorf.shoot.config;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+
+import javax.annotation.PostConstruct;
+import java.util.Arrays;
+import java.util.List;
 
 public class ClassPathTldsLoader  {
 
