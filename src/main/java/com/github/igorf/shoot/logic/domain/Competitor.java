@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 public class Competitor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     @NotNull
     @OneToOne
     private Profile profile;
@@ -18,5 +18,4 @@ public class Competitor {
     private String firstname;
     @NotNull
     private String lastname;
-    private String photo;
 }

@@ -35,6 +35,7 @@
                             <li><a href="/admin">admin panel</a></li>
                         </@security.authorize>
                         <@security.authorize access="isAuthenticated()">
+                            <li><a href="/profile">My profile</a></li>
                             <li><a href="/logout">logout</a></li>
                         </@security.authorize>
                         <@security.authorize access="! isAuthenticated()">
