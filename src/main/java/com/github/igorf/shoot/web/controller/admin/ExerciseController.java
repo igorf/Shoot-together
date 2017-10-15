@@ -6,6 +6,7 @@ import com.github.igorf.shoot.logic.service.TargetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/admin/exercise")
+@Secured("ROLE_ADMIN")
 public class ExerciseController {
     @Autowired private ExerciseService exerciseService;
     @Autowired private TargetService targetService;

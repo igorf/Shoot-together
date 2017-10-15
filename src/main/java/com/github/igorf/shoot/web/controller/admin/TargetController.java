@@ -4,6 +4,7 @@ import com.github.igorf.shoot.logic.dao.TargetDao;
 import com.github.igorf.shoot.logic.domain.Target;
 import com.github.igorf.shoot.logic.service.TargetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/admin/target")
+@Secured("ROLE_ADMIN")
 public class TargetController {
     @Autowired private TargetDao targetDao;
     @Autowired private TargetService targetService;

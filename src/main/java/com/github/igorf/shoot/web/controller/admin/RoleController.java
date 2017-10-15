@@ -5,6 +5,7 @@ import com.github.igorf.shoot.logic.domain.Role;
 import com.github.igorf.shoot.logic.service.RoleService;
 import com.github.igorf.shoot.logic.validator.RoleValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/admin/role")
+@Secured("ROLE_ADMIN")
 public class RoleController {
     @Autowired private RoleDao roleDao;
     @Autowired private RoleService roleService;

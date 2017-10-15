@@ -31,6 +31,9 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                     <ul class="nav navbar-nav navbar-right">
+                        <@security.authorize access="hasRole('ROLE_ADMIN')">
+                            <li><a href="/admin">admin panel</a></li>
+                        </@security.authorize>
                         <@security.authorize access="isAuthenticated()">
                             <li><a href="/logout">logout</a></li>
                         </@security.authorize>

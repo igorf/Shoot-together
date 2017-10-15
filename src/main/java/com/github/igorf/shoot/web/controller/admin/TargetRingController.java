@@ -7,6 +7,7 @@ import com.github.igorf.shoot.logic.domain.TargetRing;
 import com.github.igorf.shoot.logic.service.TargetService;
 import com.github.igorf.shoot.misc.RingColor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/admin/ring")
+@Secured("ROLE_ADMIN")
 public class TargetRingController {
     @Autowired private TargetRingDao targetRingDao;
     @Autowired private TargetDao targetDao;

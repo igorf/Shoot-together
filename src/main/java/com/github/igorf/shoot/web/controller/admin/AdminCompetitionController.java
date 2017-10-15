@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/admin/competition")
+@Secured("ROLE_ADMIN")
 public class AdminCompetitionController {
     @Autowired private ExerciseService exerciseService;
     @Autowired private AdminCompetitionService competitionService;
