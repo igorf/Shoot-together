@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,6 +16,4 @@ public class Role {
     private Long id;
     @NotNull
     private String name;
-    @ManyToMany(mappedBy = "roles")
-    private Set<Profile> profiles;
 }

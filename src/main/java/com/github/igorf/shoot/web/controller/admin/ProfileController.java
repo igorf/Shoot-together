@@ -50,18 +50,21 @@ public class ProfileController {
         profileValidator.validate(profile, bindingResult);
         if (!bindingResult.hasErrors()) {
             profile = profileService.saveProfile(profile);
+            return "redirect:/admin/profile/view/" + profile.getId();
         }
-
+        model.addAttribute("roles", roleService.findAll());
         model.addAttribute("profile", profile);
         return "/admin-profile/edit";
     }
 
     @RequestMapping(value = "/update_password", method = RequestMethod.POST)
-    public String updateProfile(@ModelAttribute("profile") Profile profile, BindingResult bindingResult, Model model) {
+    public String updatePassword(@ModelAttribute("profile") Profile profile, BindingResult bindingResult, Model model) {
         profilePasswordValidator.validate(profile, bindingResult);
         if (!bindingResult.hasErrors()) {
             profile = profileService.updatePassword(profile);
+            return "redirect:/admin/profile/view/" + profile.getId();
         }
+        model.addAttribute("roles", roleService.findAll());
         model.addAttribute("profile", profile);
         return "/admin-profile/edit";
     }

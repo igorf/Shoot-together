@@ -1,7 +1,6 @@
 package com.github.igorf.shoot.logic.service;
 
 import com.github.igorf.shoot.logic.dao.ProfileDao;
-import com.github.igorf.shoot.logic.domain.Competition;
 import com.github.igorf.shoot.logic.domain.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +16,8 @@ public class ProfileService {
     public Profile saveProfile(Profile profile) {
         if (profile.getId() == null) {
             profile.setPassword(passwordEncoder.encode(profile.getPassword()));
+        } else {
+            profile.setPassword(findByID(profile.getId()).getPassword());
         }
         return profileDao.save(profile);
     }
