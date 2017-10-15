@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class AdminCompetitionService {
+public class CompetitionService {
 
     @Autowired private CompetitionDao competitionDao;
     @Autowired private ExerciseDao exerciseDao;

@@ -1,7 +1,10 @@
 package com.github.igorf.shoot.web.controller;
 
-import com.github.igorf.shoot.logic.domain.Competition;
-import com.github.igorf.shoot.logic.domain.Exercise;
+import com.github.igorf.shoot.logic.service.CompetitionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,19 +15,12 @@ import java.util.Collections;
 @RequestMapping("/competition")
 public class CompetitionController {
 
+    @Autowired
+    CompetitionService competitionService;
+
     @RequestMapping("/list")
-    public String list(Model model) {
-
-        Exercise e = new Exercise();
-        e.setId(123);
-        e.setTitle("AP-40");
-
-        Competition c = new Competition();
-        c.setId(11000);
-        c.setTitle("Test competition");
-        c.setExercise(e);
-
-        model.addAttribute("competitions", Collections.singletonList(c));
+    public String list(Model model, @PageableDefault(value = 30, sort = {"end"}, direction = Sort.Direction.DESC) Pageable pageable) {
+        model.addAttribute("competitions", competitionService.listPage(pageable));
         return "competition/list";
     }
 }

@@ -1,7 +1,7 @@
 package com.github.igorf.shoot.web.controller.admin;
 
 import com.github.igorf.shoot.logic.domain.Competition;
-import com.github.igorf.shoot.logic.service.AdminCompetitionService;
+import com.github.igorf.shoot.logic.service.CompetitionService;
 import com.github.igorf.shoot.logic.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 @Secured("ROLE_ADMIN")
 public class AdminCompetitionController {
     @Autowired private ExerciseService exerciseService;
-    @Autowired private AdminCompetitionService competitionService;
+    @Autowired private CompetitionService competitionService;
     private Logger logger = Logger.getLogger(AdminCompetitionController.class.getName());
 
     @RequestMapping("/list")

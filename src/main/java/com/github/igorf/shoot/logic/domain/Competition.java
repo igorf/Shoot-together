@@ -1,5 +1,6 @@
 package com.github.igorf.shoot.logic.domain;
 
+import com.github.igorf.shoot.misc.CompetitionStatus;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -30,5 +31,19 @@ public class Competition {
     @Transient
     public boolean isMutable() {
         return getStart().getTime() > new Date().getTime();
+    }
+
+    @Transient
+    public CompetitionStatus getStatus() {
+        Date today = new Date();
+        if (today.getTime() < start.getTime()) {
+            return CompetitionStatus.PLANNED;
+        }
+
+        if (today.getTime() > end.getTime()) {
+            return CompetitionStatus.FINISHED;
+        }
+
+        return CompetitionStatus.ACTIVE;
     }
 }
