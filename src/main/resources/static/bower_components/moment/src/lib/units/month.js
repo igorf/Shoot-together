@@ -1,21 +1,28 @@
-import {get} from '../moment/get-set';
+import { get } from '../moment/get-set';
 import hasOwnProp from '../utils/has-own-prop';
-import {addFormatToken} from '../format/format';
-import {addUnitAlias} from './aliases';
-import {addUnitPriority} from './priorities';
-import {addRegexToken, match1to2, match2, matchWord, regexEscape} from '../parse/regex';
-import {addParseToken} from '../parse/token';
-import {hooks} from '../utils/hooks';
-import {MONTH} from './constants';
+import { addFormatToken } from '../format/format';
+import { addUnitAlias } from './aliases';
+import { addUnitPriority } from './priorities';
+import { addRegexToken, match1to2, match2, matchWord, regexEscape } from '../parse/regex';
+import { addParseToken } from '../parse/token';
+import { hooks } from '../utils/hooks';
+import { MONTH } from './constants';
 import toInt from '../utils/to-int';
 import isArray from '../utils/is-array';
 import isNumber from '../utils/is-number';
+import mod from '../utils/mod';
 import indexOf from '../utils/index-of';
-import {createUTC} from '../create/utc';
+import { createUTC } from '../create/utc';
 import getParsingFlags from '../create/parsing-flags';
+import { isLeapYear } from '../units/year';
 
 export function daysInMonth(year, month) {
-    return new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+    if (isNaN(year) || isNaN(month)) {
+        return NaN;
+    }
+    var modMonth = mod(month, 12);
+    year += (month - modMonth) / 12;
+    return modMonth === 1 ? (isLeapYear(year) ? 29 : 28) : (31 - modMonth % 7 % 2);
 }
 
 // FORMATTING

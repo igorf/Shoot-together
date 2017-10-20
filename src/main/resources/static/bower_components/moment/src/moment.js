@@ -1,50 +1,53 @@
 //! moment.js
-//! version : 2.18.1
+//! version : 2.19.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
 
-import {hooks as moment, setHookCallback} from './lib/utils/hooks';
+import { hooks as moment, setHookCallback } from './lib/utils/hooks';
+
+moment.version = '2.19.1';
+
 import {
-    createInvalid   as invalid,
-    createInZone    as parseZone,
-    createLocal     as local,
-    createUnix      as unix,
-    createUTC       as utc,
-    isMoment,
-    max,
     min,
+    max,
+    now,
+    isMoment,
     momentPrototype as fn,
-    now
+    createUTC       as utc,
+    createUnix      as unix,
+    createLocal     as local,
+    createInvalid   as invalid,
+    createInZone    as parseZone
 } from './lib/moment/moment';
 
-import {getCalendarFormat} from './lib/moment/calendar';
+import {
+    getCalendarFormat
+} from './lib/moment/calendar';
 
 import {
     defineLocale,
-    getLocale          as localeData,
+    updateLocale,
     getSetGlobalLocale as locale,
+    getLocale          as localeData,
     listLocales        as locales,
     listMonths         as months,
     listMonthsShort    as monthsShort,
     listWeekdays       as weekdays,
     listWeekdaysMin    as weekdaysMin,
-    listWeekdaysShort  as weekdaysShort,
-    updateLocale
+    listWeekdaysShort  as weekdaysShort
 } from './lib/locale/locale';
 
 import {
-    createDuration as duration,
-    getSetRelativeTimeRounding as relativeTimeRounding,
-    getSetRelativeTimeThreshold as relativeTimeThreshold,
-    isDuration
+    isDuration,
+    createDuration              as duration,
+    getSetRelativeTimeRounding  as relativeTimeRounding,
+    getSetRelativeTimeThreshold as relativeTimeThreshold
 } from './lib/duration/duration';
 
-import {normalizeUnits} from './lib/units/units';
+import { normalizeUnits } from './lib/units/units';
 
 import isDate from './lib/utils/is-date';
-
-moment.version = '2.18.1';
 
 setHookCallback(local);
 
@@ -71,7 +74,7 @@ moment.updateLocale          = updateLocale;
 moment.locales               = locales;
 moment.weekdaysShort         = weekdaysShort;
 moment.normalizeUnits        = normalizeUnits;
-moment.relativeTimeRounding = relativeTimeRounding;
+moment.relativeTimeRounding  = relativeTimeRounding;
 moment.relativeTimeThreshold = relativeTimeThreshold;
 moment.calendarFormat        = getCalendarFormat;
 moment.prototype             = fn;

@@ -1,11 +1,11 @@
-import {makeGetSet} from '../moment/get-set';
-import {addFormatToken} from '../format/format';
-import {addUnitAlias} from './aliases';
-import {addUnitPriority} from './priorities';
-import {addRegexToken, match1to2, match1to4, match1to6, match2, match4, match6, matchSigned} from '../parse/regex';
-import {addParseToken} from '../parse/token';
-import {hooks} from '../utils/hooks';
-import {YEAR} from './constants';
+import { makeGetSet } from '../moment/get-set';
+import { addFormatToken } from '../format/format';
+import { addUnitAlias } from './aliases';
+import { addUnitPriority } from './priorities';
+import { addRegexToken, match1to2, match1to4, match1to6, match2, match4, match6, matchSigned } from '../parse/regex';
+import { addParseToken } from '../parse/token';
+import { hooks } from '../utils/hooks';
+import { YEAR } from './constants';
 import toInt from '../utils/to-int';
 
 // FORMATTING
@@ -56,7 +56,7 @@ export function daysInYear(year) {
     return isLeapYear(year) ? 366 : 365;
 }
 
-function isLeapYear(year) {
+export function isLeapYear(year) {
     return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 }
 

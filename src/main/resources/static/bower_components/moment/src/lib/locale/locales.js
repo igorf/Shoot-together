@@ -1,12 +1,13 @@
 import isArray from '../utils/is-array';
+import hasOwnProp from '../utils/has-own-prop';
 import isUndefined from '../utils/is-undefined';
 import compareArrays from '../utils/compare-arrays';
-import {deprecateSimple} from '../utils/deprecate';
-import {mergeConfigs} from './set';
-import {Locale} from './constructor';
+import { deprecateSimple } from '../utils/deprecate';
+import { mergeConfigs } from './set';
+import { Locale } from './constructor';
 import keys from '../utils/keys';
 
-import {baseConfig} from './base-config';
+import { baseConfig } from './base-config';
 
 // internal storage for locale config files
 var locales = {};
@@ -51,11 +52,10 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            require('./locale/' + name);
-            // because defineLocale currently also sets the global locale, we
-            // want to undo that for lazy loaded locales
+            var aliasedRequire = require;
+            aliasedRequire('./locale/' + name);
             getSetGlobalLocale(oldLocale);
-        } catch (e) { }
+        } catch (e) {}
     }
     return locales[name];
 }

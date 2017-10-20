@@ -1,17 +1,17 @@
-import {Duration} from './constructor';
-import {abs} from './abs';
-import {add, subtract} from './add-subtract';
-import {as, asDays, asHours, asMilliseconds, asMinutes, asMonths, asSeconds, asWeeks, asYears, valueOf} from './as';
-import {bubble} from './bubble';
-import {days, get, hours, milliseconds, minutes, months, seconds, weeks, years} from './get';
-import {humanize} from './humanize';
-import {toISOString} from './iso-string';
-import {lang, locale, localeData} from '../moment/locale';
-import {isValid} from './valid';
-// Deprecations
-import {deprecate} from '../utils/deprecate';
+import { Duration } from './constructor';
 
 var proto = Duration.prototype;
+
+import { abs } from './abs';
+import { add, subtract } from './add-subtract';
+import { as, asMilliseconds, asSeconds, asMinutes, asHours, asDays, asWeeks, asMonths, asYears, valueOf } from './as';
+import { bubble } from './bubble';
+import { clone } from './clone';
+import { get, milliseconds, seconds, minutes, hours, days, months, years, weeks } from './get';
+import { humanize } from './humanize';
+import { toISOString } from './iso-string';
+import { lang, locale, localeData } from '../moment/locale';
+import { isValid } from './valid';
 
 proto.isValid        = isValid;
 proto.abs            = abs;
@@ -28,6 +28,7 @@ proto.asMonths       = asMonths;
 proto.asYears        = asYears;
 proto.valueOf        = valueOf;
 proto._bubble        = bubble;
+proto.clone          = clone;
 proto.get            = get;
 proto.milliseconds   = milliseconds;
 proto.seconds        = seconds;
@@ -44,6 +45,8 @@ proto.toJSON         = toISOString;
 proto.locale         = locale;
 proto.localeData     = localeData;
 
+// Deprecations
+import { deprecate } from '../utils/deprecate';
 
 proto.toIsoString = deprecate('toIsoString() is deprecated. Please use toISOString() instead (notice the capitals)', toISOString);
 proto.lang = lang;

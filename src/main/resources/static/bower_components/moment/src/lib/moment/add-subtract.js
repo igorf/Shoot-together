@@ -1,8 +1,8 @@
-import {get, set} from './get-set';
-import {setMonth} from '../units/month';
-import {createDuration} from '../duration/create';
-import {deprecateSimple} from '../utils/deprecate';
-import {hooks} from '../utils/hooks';
+import { get, set } from './get-set';
+import { setMonth } from '../units/month';
+import { createDuration } from '../duration/create';
+import { deprecateSimple } from '../utils/deprecate';
+import { hooks } from '../utils/hooks';
 import absRound from '../utils/abs-round';
 
 
@@ -36,14 +36,14 @@ export function addSubtract (mom, duration, isAdding, updateOffset) {
 
     updateOffset = updateOffset == null ? true : updateOffset;
 
-    if (milliseconds) {
-        mom._d.setTime(mom._d.valueOf() + milliseconds * isAdding);
+    if (months) {
+        setMonth(mom, get(mom, 'Month') + months * isAdding);
     }
     if (days) {
         set(mom, 'Date', get(mom, 'Date') + days * isAdding);
     }
-    if (months) {
-        setMonth(mom, get(mom, 'Month') + months * isAdding);
+    if (milliseconds) {
+        mom._d.setTime(mom._d.valueOf() + milliseconds * isAdding);
     }
     if (updateOffset) {
         hooks.updateOffset(mom, days || months);
