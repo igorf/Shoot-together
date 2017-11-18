@@ -40,6 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/resources/**",
+                        "/css/**",
+                        "js/**",
+                        "/bower_components/**",
                         "/registration",
                         "/login"
                 ).permitAll()
