@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.logging.Logger;
+
 @Service
 public class CompetitorService {
 
@@ -16,6 +18,7 @@ public class CompetitorService {
     @Autowired private CompetitorDao competitorDao;
     @Autowired private RoleService roleService;
 
+    private final static Logger logger = Logger.getLogger(CompetitorService.class.getName());
     public Competitor getCurrent() {
         return competitorDao.findByProfile(securityService.getLoggedProfile());
     }
@@ -31,7 +34,12 @@ public class CompetitorService {
             }
             competitor.setProfile(securityService.getLoggedProfile());
         }
-        return competitorDao.save(competitor);
+        try {
+            return competitorDao.save(competitor);
+        } catch (Exception ex) {
+            logger.severe(ex.getMessage());
+        }
+        return null;
     }
 
     public Competitor getByProfile(Profile profile) {
