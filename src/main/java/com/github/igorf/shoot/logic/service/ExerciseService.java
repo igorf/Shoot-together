@@ -26,6 +26,7 @@ public class ExerciseService {
             int timeLimit,
             float caliber,
             float distance,
+            int shotsPerTarget,
             long targetId
     ) {
         Target target = targetDao.findOne(targetId);
@@ -37,6 +38,7 @@ public class ExerciseService {
         exercise.setCaliber(caliber);
         exercise.setDistance(distance);
         exercise.setTarget(target);
+        exercise.setShotsPerTarget(shotsPerTarget);
         try {
             exercise = exerciseDao.save(exercise);
             return exercise;
@@ -54,6 +56,7 @@ public class ExerciseService {
             int timeLimit,
             float caliber,
             float distance,
+            int shotsPerTarget,
             long targetId
     ) {
         Target target = targetDao.findOne(targetId);
@@ -66,6 +69,7 @@ public class ExerciseService {
             exercise.setCaliber(caliber);
             exercise.setDistance(distance);
             exercise.setTarget(target);
+            exercise.setShotsPerTarget(shotsPerTarget);
             try {
                 exercise = exerciseDao.save(exercise);
                 return exercise;
