@@ -5,21 +5,23 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
+
+import static javax.persistence.CascadeType.ALL;
 
 @Data
 @Entity
-public class Shot {
+public class CompetitorTarget {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="competitionTarget_id")
-    private CompetitorTarget competitorTarget;
+    @JoinColumn(name="competitionResult_id")
+    private CompetitionResult competitionResult;
     @ManyToOne
     private Profile competitor;
-    private float x;
-    private float y;
-    private float result;
     @NotNull
     private Date dateCreated;
+    @OneToMany(cascade=ALL, mappedBy="competitorTarget")
+    private List<Shot> shots;
 }

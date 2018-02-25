@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Collections;
@@ -22,5 +23,11 @@ public class CompetitionController {
     public String list(Model model, @PageableDefault(value = 30, sort = {"end"}, direction = Sort.Direction.DESC) Pageable pageable) {
         model.addAttribute("competitions", competitionService.listPage(pageable));
         return "competition/list";
+    }
+
+    @RequestMapping("/view/{id}")
+    public String view(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("competition", competitionService.findById(id));
+        return "competition/view";
     }
 }

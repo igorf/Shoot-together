@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.CascadeType.ALL;
@@ -23,5 +24,27 @@ public class CompetitionResult {
     private int result;
     private int place;
     @OneToMany(cascade=ALL, mappedBy="competitionResult")
-    private List<Shot> shots;
+    private List<CompetitorTarget> targets;
+
+    @Transient
+    public List<Shot> getShots() {
+        List<Shot> total = new ArrayList<>();
+        if (getTargets() != null) {
+            for (CompetitorTarget t : getTargets()) {
+                total.addAll(t.getShots());
+            }
+        }
+
+        return total;
+    }
+
+    public boolean needMoreTargets() {
+        try {
+            int targetsNeeded = getCompetition().getExercise().getShots() / getCompetition().getExercise().getShotsPerTarget();
+            return targetsNeeded != 0 && (getTargets() == null || targetsNeeded > getTargets().size());
+        } catch (Exception ex) {
+            //TODO: log exception
+        }
+        return false;
+    }
 }
