@@ -57,6 +57,8 @@
             type: "POST",
             url: "/api/result/my/target/save/${competition.id}",
             data: JSON.stringify(target.getResults()),
+            dataType: "json",
+            contentType : "application/json",
             success: function() {
                 window.location.replace('/competition/result/my/${competition.id}');
             },
@@ -77,10 +79,8 @@
                 } else {
                     msg = 'Uncaught Error.\n' + jqXHR.responseText;
                 }
-                alert(msg);
-            },
-            dataType: "json",
-            contentType : "application/json"
+                console.log(msg);
+            }
         });
     }
 </script>
