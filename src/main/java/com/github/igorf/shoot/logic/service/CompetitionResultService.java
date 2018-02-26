@@ -4,6 +4,7 @@ import com.github.igorf.shoot.logic.dao.CompetitionResultDao;
 import com.github.igorf.shoot.logic.dao.CompetitorDao;
 import com.github.igorf.shoot.logic.dao.ExerciseDao;
 import com.github.igorf.shoot.logic.domain.*;
+import com.github.igorf.shoot.logic.dto.ShotResultDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,5 +28,10 @@ public class CompetitionResultService {
         }
 
         return result;
+    }
+
+    public CompetitorTarget addTargetToResult(CompetitionResult result, ShotResultDTO[] shots) {
+        //TODO: implement
+        return null;
     }
 }

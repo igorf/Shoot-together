@@ -15,8 +15,16 @@
 </ul>
 
 <div id="target"></div>
+
+<div class="alert alert-info">
+    <a class="btn btn-sm btn-danger" onclick="saveTarget();">
+        <span class="glyphicon glyphicon-plus"></span>
+        Save target result
+    </a>
+</div>
+
 <script>
-    let target = new Target('target', 650, 650);
+    var target = new Target('target', 650, 650);
     let rings = [];
     let shots = [];
     <#if (competition.exercise.target.rings) ??>
@@ -43,6 +51,38 @@
 
     target.editable = true;
     target.draw();
+
+    function saveTarget() {
+        $.ajax({
+            type: "POST",
+            url: "/api/result/my/target/save/${competition.id}",
+            data: JSON.stringify(target.getResults()),
+            success: function() {
+                window.location.replace('/competition/result/my/${competition.id}');
+            },
+            error: function (jqXHR, exception) {
+                var msg = '';
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                }
+                alert(msg);
+            },
+            dataType: "json",
+            contentType : "application/json"
+        });
+    }
 </script>
 
 </@layout>
