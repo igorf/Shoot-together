@@ -15,8 +15,6 @@ public class Shot {
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="competitionTarget_id")
     private CompetitorTarget competitorTarget;
-    @ManyToOne
-    private Profile competitor;
     private float x;
     private float y;
     private float result;

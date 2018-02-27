@@ -18,10 +18,19 @@ public class CompetitorTarget {
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="competitionResult_id")
     private CompetitionResult competitionResult;
-    @ManyToOne
-    private Profile competitor;
     @NotNull
     private Date dateCreated;
     @OneToMany(cascade=ALL, mappedBy="competitorTarget")
     private List<Shot> shots;
+
+    @Transient
+    public int getScore() {
+        int score = 0;
+        if (shots != null) {
+            for (Shot s : shots) {
+                score += s.getResult();
+            }
+        }
+        return score;
+    }
 }

@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class CompetitionResultService {
@@ -30,8 +33,30 @@ public class CompetitionResultService {
         return result;
     }
 
+    @Transactional
     public CompetitorTarget addTargetToResult(CompetitionResult result, ShotResultDTO[] shots) {
-        //TODO: implement
-        return null;
+        if (!result.needMoreTargets()) {
+            throw new IllegalArgumentException();
+        }
+        Date now = new Date();
+        CompetitorTarget target = new CompetitorTarget();
+        target.setDateCreated(now);
+        target.setCompetitionResult(result);
+        List<Shot> shotList = new ArrayList<>(shots.length);
+        for (ShotResultDTO r: shots) {
+            Shot s = new Shot();
+            s.setResult(r.getValue());
+            s.setX(r.getX());
+            s.setY(r.getY());
+            s.setCompetitorTarget(target);
+            s.setDateCreated(now);
+            shotList.add(s);
+        }
+        target.setShots(shotList);
+        result.addTarget(target);
+        result.setResult(result.getResult() + target.getScore());
+        competitionResultDao.save(result);
+
+        return target;
     }
 }

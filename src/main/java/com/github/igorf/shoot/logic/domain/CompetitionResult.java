@@ -47,4 +47,11 @@ public class CompetitionResult {
         }
         return false;
     }
+
+    public void addTarget(CompetitorTarget target) {
+        if (this.targets == null) {
+            this.targets = new ArrayList<>(1);
+        }
+        this.targets.add(target);
+    }
 }
