@@ -3,7 +3,7 @@
 <script language="JavaScript" src="/js/components/Target.js"></script>
 <div id="target_${result.id}"></div>
 <script>
-    let target = new Target('target_${result.id}', 150, 150);
+    let target = new Target('target_${result.id}', 250, 250);
     let rings = [];
     let shots = [];
 
@@ -15,7 +15,7 @@
 
     <#if (result.getShots()) ??>
        <#list result.getShots() as shot>
-            shots.push(new Shot(${result.competition.exercise.caliber}, ${shot.result}, ${shot.x}, ${shot.y}));
+            shots.push(new Shot(${result.competition.exercise.caliber?c}, ${shot.result?c}, ${shot.x?c}, ${shot.y?c}));
        </#list>
     </#if>
 
