@@ -33,7 +33,7 @@ dependencies {
 	compile("org.webjars:bootstrap:3.3.7")
 
 	testCompile("org.springframework.boot:spring-boot-starter-test")
-	compileOnly("org.projectlombok:lombok:1.16.16")
+	compile("org.projectlombok:lombok:1.16.16")
 
 	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.7-dmr'
 }

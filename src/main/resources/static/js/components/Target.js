@@ -100,9 +100,11 @@ Target.prototype = {
     },
 
     addCircle: function (circle) {
-        circle.target = this;
-        this.circles.push(circle);
-        this.arrange();
+        if (circle.value >= this.minRing) {
+            circle.target = this;
+            this.circles.push(circle);
+            this.arrange();
+        }
     },
 
     addShot: function (shot) {

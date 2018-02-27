@@ -38,21 +38,21 @@
                 <div class="form-group">
                     <label for="inputCaliber" class="col-lg-2 control-label">Caliber, mm</label>
                     <div class="col-lg-10">
-                        <input type="number" step="any" class="form-control" id="inputCaliber" name="caliber" value="${((exercise.caliber)!"")?string.computer}">
+                        <input type="number" step="any" class="form-control" id="inputCaliber" name="caliber" value="${((exercise.caliber)!0)?string.computer}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputDistance" class="col-lg-2 control-label">Distance, m</label>
                     <div class="col-lg-10">
-                        <input type="number" step="any" class="form-control" id="inputDistance" name="distance" value="${((exercise.distance)!)?string.computer}">
+                        <input type="number" step="any" class="form-control" id="inputDistance" name="distance" value="${((exercise.distance)!0)?string.computer}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputShotsPerTarget" class="col-lg-2 control-label">Shots per target</label>
                     <div class="col-lg-10">
-                        <input type="number" step="any" class="form-control" id="inputShotsPerTarget" name="shotsPerTarget" value="${((exercise.shotsPerTarget)!)?string.computer}">
+                        <input type="number" step="any" class="form-control" id="inputShotsPerTarget" name="shotsPerTarget" value="${((exercise.shotsPerTarget)!0)?string.computer}">
                     </div>
                 </div>
 
