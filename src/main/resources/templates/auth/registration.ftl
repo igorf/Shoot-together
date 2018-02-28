@@ -1,6 +1,7 @@
 <#import "/spring.ftl" as spring/>
 <#include '../layout/basic.ftl'>
-<@basic_layout title="Login">
+<@basic_layout title="Register">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <form method="POST" action="/registration" class="form-horizontal">
     <fieldset>
@@ -9,6 +10,16 @@
                 <h2>Sign in</h2>
             </div>
         </div>
+
+        <@spring.bind "userForm.captcha" />
+        <#list spring.status.errorMessages as error>
+            <div class="col-lg-4 col-lg-offset-4 alert alert-danger" role="alert">
+                <b>${error}</b>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </#list>
 
         <div class="form-group">
             <div class="col-lg-4 col-lg-offset-4">
@@ -44,6 +55,11 @@
                     <b>${error}</b>
                 </div>
             </#list>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-4 col-lg-offset-4">
+                <div class="g-recaptcha" data-sitekey="6LdIo0kUAAAAAOZsg5m8G_eJmuiwBoPPDZvstaMO"></div>
+            </div>
         </div>
 
         <div class="form-group">

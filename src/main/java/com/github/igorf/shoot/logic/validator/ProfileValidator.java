@@ -1,6 +1,7 @@
 package com.github.igorf.shoot.logic.validator;
 
 import com.github.igorf.shoot.logic.domain.Profile;
+import com.github.igorf.shoot.logic.dto.ProfileDTO;
 import com.github.igorf.shoot.logic.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,7 +21,7 @@ public class ProfileValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        Profile profile = (Profile) o;
+        ProfileDTO profile = (ProfileDTO) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login", "NotEmpty");
 
