@@ -54,4 +54,15 @@ public class CompetitionResult {
         }
         this.targets.add(target);
     }
+
+    @Transient
+    public int getMinimumVisibleRing() {
+        int minimum = (getShots().size() > 0) ? (int) getShots().get(0).getResult() : getCompetition().getExercise().getTarget().minimumDenomination();
+        for (Shot s: getShots()) {
+            if (s.getResult() < minimum) {
+                minimum = (int)s.getResult();
+            }
+        }
+        return minimum - 1;
+    }
 }

@@ -59,14 +59,4 @@ public class CompetitionResultService {
 
         return target;
     }
-
-    int getMinimumVisibleRing(CompetitionResult result) {
-        int minimum = (result.getShots().size() > 0) ? (int) result.getShots().get(0).getResult() : result.getCompetition().getExercise().getTarget().minimumDenomination();
-        for (Shot s: result.getShots()) {
-            if (s.getResult() < minimum) {
-                minimum = (int)s.getResult();
-            }
-        }
-        return minimum;
-    }
 }

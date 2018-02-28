@@ -3,9 +3,10 @@
 <script language="JavaScript" src="/js/components/Target.js"></script>
 <div id="target_${result.id}"></div>
 <script>
-    let target = new Target('target_${result.id}', 250, 250);
+    let target = new Target('target_${result.id}', 200, 200);
     let rings = [];
     let shots = [];
+    target.minRing = ${result.getMinimumVisibleRing()}
 
     <#if (result.competition.exercise.target.rings) ??>
         <#list result.competition.exercise.target.rings as ring>
