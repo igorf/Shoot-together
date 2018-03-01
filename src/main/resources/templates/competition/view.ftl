@@ -1,4 +1,5 @@
 <#-- @ftlvariable name="competition" type="com.github.igorf.shoot.logic.domain.Competition" -->
+<#-- @ftlvariable name="myResult" type="com.github.igorf.shoot.logic.domain.CompetitionResult" -->
 
 <#include '../layout/app.ftl'>
 
@@ -10,14 +11,18 @@
     <li class="active">${competition.title}</li>
 </ul>
 
+<@security.authorize access="hasRole('ROLE_COMPETITOR')">
+<#if myResult.isEditable()>
 <div class="alert alert-info">
-    <a href="/competition/result/my/${competition.id}">My result</a>
+    <a href="/competition/result/my/${competition.id}">Edit my result</a>
 </div>
+</#if>
+</@security.authorize>
 
 <table class="table table-hover">
   <tbody>
- <#if (competition.results) ??>
-  <#list competition.results as cResult>
+ <#if (competition.visibleResults) ??>
+  <#list competition.visibleResults as cResult>
     <tr>
         <td>
             <#assign result = cResult>

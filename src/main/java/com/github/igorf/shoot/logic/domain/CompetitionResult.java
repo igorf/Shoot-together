@@ -1,5 +1,6 @@
 package com.github.igorf.shoot.logic.domain;
 
+import com.github.igorf.shoot.misc.CompetitionStatus;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class CompetitionResult {
     private Competition competition;
     private int result;
     private int place;
+    private boolean sent = false;
     @OneToMany(cascade=ALL, mappedBy="competitionResult")
     private List<CompetitorTarget> targets;
 
@@ -64,5 +66,15 @@ public class CompetitionResult {
             }
         }
         return minimum - 1;
+    }
+
+    @Transient
+    public boolean isEditable() {
+        return !(isSent() || getCompetition() == null || getCompetition().getStatus() != CompetitionStatus.ACTIVE);
+    }
+
+    @Transient
+    public boolean isSendable() {
+        return isEditable() && !needMoreTargets();
     }
 }

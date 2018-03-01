@@ -35,7 +35,7 @@ public class CompetitionResultService {
 
     @Transactional
     public CompetitorTarget addTargetToResult(CompetitionResult result, ShotResultDTO[] shots) {
-        if (!result.needMoreTargets()) {
+        if (!result.needMoreTargets() || !result.isEditable()) {
             throw new IllegalArgumentException();
         }
         Date now = new Date();

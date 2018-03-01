@@ -34,9 +34,11 @@ public class ApiController {
         Profile profile = securityService.getLoggedProfile();
         CompetitionResult competitionResult
                 = competitionResultService.findOrCreateCompetitionResult(competition, profile);
-        if (competitionResultService.addTargetToResult(competitionResult, shots) != null) {
+        try {
+            competitionResultService.addTargetToResult(competitionResult, shots);
             return new ResponseEntity<>(OperationResultDTO.success(), HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(OperationResultDTO.error(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(OperationResultDTO.error(), HttpStatus.NO_CONTENT);
     }
 }

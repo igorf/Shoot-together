@@ -1,5 +1,8 @@
 package com.github.igorf.shoot.web.controller;
 
+import com.github.igorf.shoot.logic.auth.SecurityService;
+import com.github.igorf.shoot.logic.domain.Competition;
+import com.github.igorf.shoot.logic.service.CompetitionResultService;
 import com.github.igorf.shoot.logic.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -16,8 +19,9 @@ import java.util.Collections;
 @RequestMapping("/competition")
 public class CompetitionController {
 
-    @Autowired
-    CompetitionService competitionService;
+    @Autowired CompetitionService competitionService;
+    @Autowired CompetitionResultService resultService;
+    @Autowired SecurityService securityService;
 
     @RequestMapping("/list")
     public String list(Model model, @PageableDefault(value = 30, sort = {"end"}, direction = Sort.Direction.DESC) Pageable pageable) {
@@ -27,7 +31,10 @@ public class CompetitionController {
 
     @RequestMapping("/view/{id}")
     public String view(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("competition", competitionService.findById(id));
+        Competition competition = competitionService.findById(id);
+        model.addAttribute("competition", competition);
+        model.addAttribute("myResult", resultService.findOrCreateCompetitionResult(competition, securityService.getLoggedProfile()));
+
         return "competition/view";
     }
 }
