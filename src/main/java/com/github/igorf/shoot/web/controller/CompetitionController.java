@@ -2,6 +2,7 @@ package com.github.igorf.shoot.web.controller;
 
 import com.github.igorf.shoot.logic.auth.SecurityService;
 import com.github.igorf.shoot.logic.domain.Competition;
+import com.github.igorf.shoot.logic.domain.CompetitionResult;
 import com.github.igorf.shoot.logic.service.CompetitionResultService;
 import com.github.igorf.shoot.logic.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,11 @@ public class CompetitionController {
     public String view(Model model, @PathVariable("id") Long id) {
         Competition competition = competitionService.findById(id);
         model.addAttribute("competition", competition);
-        model.addAttribute("myResult", resultService.findOrCreateCompetitionResult(competition, securityService.getLoggedProfile()));
-
+        if (securityService.getLoggedProfile() != null) {
+            model.addAttribute("myResult", resultService.findOrCreateCompetitionResult(competition, securityService.getLoggedProfile()));
+        } else {
+            model.addAttribute("myResult", null);
+        }
         return "competition/view";
     }
 }
