@@ -18,6 +18,7 @@ public class Exercise {
     @NotNull private float caliber;
     @NotNull private float distance;
     @NotNull private int shotsPerTarget;
+    @NotNull private int shotsPerSeries;
     @ManyToOne
     private Target target;
 }

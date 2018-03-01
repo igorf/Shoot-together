@@ -57,6 +57,13 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="inputShotsPerSeries" class="col-lg-2 control-label">Shots per series</label>
+                    <div class="col-lg-10">
+                        <input type="number" step="any" class="form-control" id="inputShotsPerSeries" name="shotsPerSeries" value="${((exercise.shotsPerSeries)!0)?string.computer}">
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="selectTarget" class="col-lg-2 control-label">Target</label>
                     <div class="col-lg-10">
                         <select class="form-control" id="selectTarget" name="targetId">

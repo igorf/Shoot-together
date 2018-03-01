@@ -7,8 +7,8 @@
 <h2>${competition.title}</h2>
 
 <ul class="breadcrumb">
-    <li><a href="/competition/list">Competitions</a></li>
-    <li class="active">${competition.title}</li>
+    <li class="breadcrumb-item"><a href="/competition/list">Competitions</a></li>
+    <li class="breadcrumb-item active">${competition.title}</li>
 </ul>
 
 <@security.authorize access="hasRole('ROLE_COMPETITOR')">
