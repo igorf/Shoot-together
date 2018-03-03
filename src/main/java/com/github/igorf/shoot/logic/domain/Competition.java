@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,7 +53,11 @@ public class Competition {
     @Transient
     public List<CompetitionResult> getVisibleResults() {
         if (results != null) {
-            return results.stream().filter(CompetitionResult::isSent).collect(Collectors.toList());
+            return results
+                    .stream()
+                    .filter(CompetitionResult::isSent)
+                    .sorted(Comparator.comparing(CompetitionResult::getResult).reversed())
+                    .collect(Collectors.toList());
         }
         return null;
     }

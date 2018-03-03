@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -69,5 +70,9 @@ public class CompetitionResultService {
             competitionResultDao.save(result);
         }
         return result;
+    }
+
+    public Collection<CompetitionResult> getVisibleResults(Competition competition) {
+        return competitionResultDao.findAllByCompetitionAndSentOrderByResultDesc(competition, true);
     }
 }

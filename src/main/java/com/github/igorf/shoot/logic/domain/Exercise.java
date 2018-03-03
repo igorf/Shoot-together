@@ -21,4 +21,9 @@ public class Exercise {
     @NotNull private int shotsPerSeries;
     @ManyToOne
     private Target target;
+
+    @Transient
+    public int getSeriesNumber() {
+        return shots / shotsPerSeries;
+    }
 }

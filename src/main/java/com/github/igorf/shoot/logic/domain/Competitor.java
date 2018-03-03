@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 @Data
 @Entity
@@ -17,4 +18,6 @@ public class Competitor {
     private String firstname;
     @NotNull
     private String lastname;
+    @NotNull
+    private String city;
 }

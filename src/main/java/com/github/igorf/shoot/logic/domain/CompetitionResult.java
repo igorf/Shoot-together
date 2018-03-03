@@ -6,7 +6,10 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import static javax.persistence.CascadeType.ALL;
 
@@ -76,5 +79,23 @@ public class CompetitionResult {
     @Transient
     public boolean isSendable() {
         return isEditable() && !needMoreTargets();
+    }
+
+    @Transient
+    public List<Integer> getShotSeries() {
+        final AtomicInteger counter = new AtomicInteger(0);
+        final int size = getCompetition().getExercise().getShotsPerSeries();
+
+        return getShots()
+                .stream()
+                .collect(Collectors.groupingBy(it -> counter.getAndIncrement() / size))
+                .values()
+                .stream()
+                .map(
+                        i -> i.stream()
+                                .mapToInt(s -> (int)s.getResult())
+                                .sum()
+                )
+                .collect(Collectors.toList());
     }
 }

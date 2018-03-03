@@ -38,6 +38,19 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="inputCity" class="col-lg-2 control-label">City</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputCity" name="city" value="${(competitor.city)!}">
+                    </div>
+                    <@spring.bind "competitor.city" />
+                    <#list spring.status.errorMessages as error>
+                        <div class="col-lg-10 col-lg-offset-2 error">
+                            <b>${error}</b>
+                        </div>
+                    </#list>
+                </div>
+
+                <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
                         <button type="submit" class="btn btn-primary btn-sm">
                             <span class="glyphicon glyphicon-save"></span>

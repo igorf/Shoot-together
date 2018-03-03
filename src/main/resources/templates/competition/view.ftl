@@ -22,15 +22,34 @@
 <table class="table table-hover">
   <tbody>
  <#if (competition.visibleResults) ??>
-  <#list competition.visibleResults as cResult>
+    <h2>Competition results</h2>
+    <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Location</th>
+        <#list 0..<competition.exercise.seriesNumber as i>
+        <th>#${i + 1}</th>
+        </#list>
+        <th>Total</th>
+    </tr>
+  <#list competition.visibleResults as result>
     <tr>
         <td>
-            <#assign result = cResult>
-            <#include "../components/result_target.ftl">
+            ${result?counter}
         </td>
         <td>
-            ${result.competitor.firstname} ${result.competitor.lastname}
-            ${result.result}
+         ${result.competitor.firstname} ${result.competitor.lastname}
+        </td>
+        <td>
+            ${(result.competitor.city)!}
+        </td>
+        <#list result.shotSeries as serie>
+        <td>
+            ${serie}
+        </td>
+        </#list>
+        <td>
+         ${result.result}
         </td>
     </tr>
   </#list>

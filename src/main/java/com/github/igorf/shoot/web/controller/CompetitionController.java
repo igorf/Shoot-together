@@ -2,7 +2,6 @@ package com.github.igorf.shoot.web.controller;
 
 import com.github.igorf.shoot.logic.auth.SecurityService;
 import com.github.igorf.shoot.logic.domain.Competition;
-import com.github.igorf.shoot.logic.domain.CompetitionResult;
 import com.github.igorf.shoot.logic.service.CompetitionResultService;
 import com.github.igorf.shoot.logic.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Collections;
 
 @Controller
 @RequestMapping("/competition")
