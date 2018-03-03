@@ -37,6 +37,21 @@
  </#if>
 </div>
 
+<@security.authorize access="hasRole('ROLE_COMPETITOR')">
+  <#if competitionResult.isEditable()>
+  <div class="alert alert-info">
+      <a
+              class="btn btn-sm btn-danger"
+              <#if !competitionResult.isSendable()>disabled="disabled"</#if>
+              href="/competition/result/my/${competitionResult.competition.id}/publish"
+      >
+          <span class="glyphicon glyphicon-save"></span>
+          Publish my results (${competitionResult.result})
+      </a>
+  </div>
+  </#if>
+</@security.authorize>
+
 <script>
     let rings = [];
     let shots = [];

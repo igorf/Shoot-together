@@ -41,4 +41,16 @@ public class CompetitorTargetController {
         model.addAttribute("competitionResult", competitionResult);
         return "result/my";
     }
+
+    @Secured("ROLE_COMPETITOR")
+    @RequestMapping("/my/{competitionId}/publish")
+    public String publish(Model model, @PathVariable("competitionId") Long competitionId) {
+        Competition competition = competitionService.findById(competitionId);
+        Profile profile = securityService.getLoggedProfile();
+        CompetitionResult competitionResult = competitionResultService.findOrCreateCompetitionResult(competition, profile);
+
+        competitionResult = competitionResultService.publish(competitionResult);
+        model.addAttribute("competitionResult", competitionResult);
+        return "result/my";
+    }
 }

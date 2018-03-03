@@ -8,6 +8,7 @@ import com.github.igorf.shoot.logic.dto.ShotResultDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,5 +59,15 @@ public class CompetitionResultService {
         competitionResultDao.save(result);
 
         return target;
+    }
+
+    @Transactional
+    @Secured("ROLE_COMPETITOR")
+    public CompetitionResult publish(CompetitionResult result) {
+        if (result.isSendable()) {
+            result.setSent(true);
+            competitionResultDao.save(result);
+        }
+        return result;
     }
 }
