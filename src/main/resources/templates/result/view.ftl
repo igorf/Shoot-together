@@ -15,7 +15,18 @@
 
 <h2>Total results</h2>
 <div class="alert alert-info">
-    <div id="total_result"></div>
+    <div class="row">
+        <div class="col-lg-3" id="total_result"></div>
+        <div class="col-lg-offset-4">
+            <h1>Name: ${competitionResult.competitor.firstname} ${competitionResult.competitor.lastname}</h1>
+            <h2>
+                Series:
+                <#list competitionResult.shotSeries as serie>
+                 ${serie}
+                </#list>
+            </h2>
+        </div>
+    </div>
 </div>
 
 <hr />
@@ -24,7 +35,17 @@
  <#if (competitionResult.targets) ??>
   <#list competitionResult.targets as cTarget>
    <div class="alert alert-success">
-       <div id="target_${cTarget.id}"></div>
+       <div class="row">
+           <div class="col-lg-3" id="target_${cTarget.id}"></div>
+           <div class="col-lg-offset-4">
+               <h2>
+                   Shots:&nbsp;
+        <#list cTarget.shots as shot>
+         ${shot.result}&nbsp;
+        </#list>
+               </h2>
+           </div>
+       </div>
    </div>
   </#list>
  </#if>
