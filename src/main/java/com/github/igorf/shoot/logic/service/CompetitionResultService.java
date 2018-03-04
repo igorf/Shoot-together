@@ -75,4 +75,8 @@ public class CompetitionResultService {
     public Collection<CompetitionResult> getVisibleResults(Competition competition) {
         return competitionResultDao.findAllByCompetitionAndSentOrderByResultDesc(competition, true);
     }
+
+    public CompetitionResult getByID(Long id) {
+        return competitionResultDao.findOne(id);
+    }
 }

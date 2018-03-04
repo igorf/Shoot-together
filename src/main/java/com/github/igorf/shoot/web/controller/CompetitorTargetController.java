@@ -53,4 +53,11 @@ public class CompetitorTargetController {
         model.addAttribute("competitionResult", competitionResult);
         return "result/my";
     }
+
+    @RequestMapping("/{resultId}")
+    public String competitionResultView(Model model, @PathVariable("resultId") Long resultId) {
+        CompetitionResult competitionResult = competitionResultService.getByID(resultId);
+        model.addAttribute("competitionResult", competitionResult);
+        return "result/view";
+    }
 }
