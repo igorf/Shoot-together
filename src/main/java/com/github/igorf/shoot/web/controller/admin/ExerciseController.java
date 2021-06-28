@@ -59,13 +59,15 @@ public class ExerciseController {
             @RequestParam("timeLimit") int timeLimit,
             @RequestParam("caliber") float caliber,
             @RequestParam("distance") float distance,
+            @RequestParam("shotsPerTarget") int shotsPerTarget,
+            @RequestParam("shotsPerSeries") int shotsPerSeries,
             @RequestParam("targetId") long targetId
     ) {
         Exercise exercise;
         if (id == -1) {
-            exercise = exerciseService.createExercise(title, description, shots, timeLimit, caliber, distance, targetId);
+            exercise = exerciseService.createExercise(title, description, shots, timeLimit, caliber, distance, shotsPerTarget, shotsPerSeries, targetId);
         } else {
-            exercise = exerciseService.updateExercise(id, title, description, shots, timeLimit, caliber, distance, targetId);
+            exercise = exerciseService.updateExercise(id, title, description, shots, timeLimit, caliber, distance, shotsPerTarget, shotsPerSeries, targetId);
         }
 
         if (exercise != null) {

@@ -40,12 +40,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/resources/**",
+                        "/css/**",
+                        "/js/**",
+                        "/bower_components/**",
                         "/registration",
                         "/login",
-                        "/css/**",
-                        "/js/**"
+                        "/competition/**"
                 ).permitAll()
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/competition/result/my/**").access("hasRole('ROLE_COMPETITOR')")
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").successHandler(successHandler()).permitAll()
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").permitAll();

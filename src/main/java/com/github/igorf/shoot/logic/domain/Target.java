@@ -19,4 +19,32 @@ public class Target {
     @OneToMany(cascade=ALL, mappedBy="target")
     @OrderBy("denomination DESC")
     private List<TargetRing> rings;
+
+    @Transient
+    public float getDiameter() {
+        if (rings != null) {
+            float diameter = rings.get(0).getDiameter();
+            for (TargetRing ring: rings) {
+                if (ring.getDiameter() > diameter) {
+                    diameter = ring.getDiameter();
+                }
+            }
+            return diameter;
+        }
+        return 0;
+    }
+
+    @Transient
+    public int minimumDenomination() {
+        if (rings != null) {
+            int denomination = rings.get(0).getDenomination();
+            for (TargetRing ring: rings) {
+                if (ring.getDenomination() < denomination) {
+                    denomination = ring.getDenomination();
+                }
+            }
+            return denomination;
+        }
+        return 0;
+    }
 }

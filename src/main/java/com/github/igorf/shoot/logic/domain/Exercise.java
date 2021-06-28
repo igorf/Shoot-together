@@ -17,6 +17,13 @@ public class Exercise {
     @NotNull private int timeLimit; //between first and last shot
     @NotNull private float caliber;
     @NotNull private float distance;
+    @NotNull private int shotsPerTarget;
+    @NotNull private int shotsPerSeries;
     @ManyToOne
     private Target target;
+
+    @Transient
+    public int getSeriesNumber() {
+        return shots / shotsPerSeries;
+    }
 }

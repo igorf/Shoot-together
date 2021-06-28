@@ -5,7 +5,7 @@
 <@layout title="Competitions">
 <h2>Competitions</h2>
 
-<table class="table table-bordered table-striped">
+<table class="table table-hover table-bordered table-striped">
     <tr>
         <th>Title</th>
         <th>Exercise</th>
@@ -19,7 +19,11 @@
             <td>${competition.exercise.title}</td>
             <td>${competition.start?string["dd.MM.yyyy"]}</td>
             <td>${competition.end?string["dd.MM.yyyy"]}</td>
-            <td>${competition.status}</td>
+            <td>
+             <#if competition.status == "PLANNED">Not started yet</#if>
+             <#if competition.status == "FINISHED">Finished</#if>
+             <#if competition.status == "ACTIVE">In progress</#if>
+            </td>
         </tr>
     </#list>
 </table>

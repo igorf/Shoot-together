@@ -13,10 +13,8 @@ public class Shot {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="competitionResult_id")
-    private CompetitionResult competitionResult;
-    @ManyToOne
-    private Profile competitor;
+    @JoinColumn(name="competitionTarget_id")
+    private CompetitorTarget competitorTarget;
     private float x;
     private float y;
     private float result;

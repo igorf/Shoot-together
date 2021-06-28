@@ -1,0 +1,20 @@
+{
+  "name": "shotttogether",
+  "homepage": "https://github.com/igorf/Shoot-together",
+  "authors": [
+    "ifedorenko@gmail.com"
+  ],
+  "description": "Shot Together JS components",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47"
+  }
+}

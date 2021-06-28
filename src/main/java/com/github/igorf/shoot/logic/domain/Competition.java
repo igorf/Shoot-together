@@ -5,8 +5,11 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static javax.persistence.CascadeType.ALL;
 
@@ -45,5 +48,17 @@ public class Competition {
         }
 
         return CompetitionStatus.ACTIVE;
+    }
+
+    @Transient
+    public List<CompetitionResult> getVisibleResults() {
+        if (results != null) {
+            return results
+                    .stream()
+                    .filter(CompetitionResult::isSent)
+                    .sorted(Comparator.comparing(CompetitionResult::getResult).reversed())
+                    .collect(Collectors.toList());
+        }
+        return null;
     }
 }

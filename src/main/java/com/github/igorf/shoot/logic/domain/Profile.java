@@ -18,7 +18,7 @@ public class Profile {
     @NotNull
     private String password;
     @Transient private String passwordConfirm;
-    @OneToMany
+    @ManyToMany
     private Set<Role> roles = new HashSet<>(0);
 
     @Transient

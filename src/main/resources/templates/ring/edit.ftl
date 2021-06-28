@@ -4,6 +4,7 @@
 <#include '../layout/admin.ftl'>
 <@admin_layout title="Edit target ${(target.title)!}">
 
+    <#assign diameter = (ring.diameter)!0>
     <ul class="breadcrumb">
         <li><a href="/admin/target/list">Target list</a></li>
         <li><a href="/admin/target/view/${(target.id)!}">Edit target ${(target.title)!}</a></li>
@@ -35,7 +36,7 @@
                 <div class="form-group">
                     <label for="inputDiameter" class="col-lg-2 control-label">Diameter</label>
                     <div class="col-lg-10">
-                        <input type="number" step="any" name="diameter" class="form-control" id="inputDiameter" value="${((ring.diameter)!)?string.computer}">
+                        <input type="number" step="any" name="diameter" class="form-control" id="inputDiameter" value="${(diameter)?string.computer}">
                     </div>
                 </div>
 

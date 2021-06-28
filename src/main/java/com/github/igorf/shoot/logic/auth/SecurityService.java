@@ -23,9 +23,13 @@ public class SecurityService {
     private static final Logger logger = LoggerFactory.getLogger(SecurityService.class);
 
     public String findLoggedInUsername() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) authentication.getPrincipal();
-        return user.getUsername();
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            User user = (User) authentication.getPrincipal();
+            return user.getUsername();
+        } catch (Exception ex) {
+            return null;
+        }
     }
 
     public void autologin(String username, String password) {
@@ -41,7 +45,11 @@ public class SecurityService {
     }
 
     public Profile getLoggedProfile() {
-        String username = findLoggedInUsername();
-        return profileService.findByLogin(username);
+        try {
+            String username = findLoggedInUsername();
+            return profileService.findByLogin(username);
+        } catch (Exception ex) {
+            return null;
+        }
     }
 }
