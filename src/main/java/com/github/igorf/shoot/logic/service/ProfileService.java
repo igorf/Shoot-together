@@ -30,7 +30,7 @@ public class ProfileService {
     }
 
     public Profile findByID(Long id) {
-        return profileDao.findOne(id);
+        return profileDao.findById(id).orElse(null);
     }
 
     @Transactional
@@ -41,7 +41,7 @@ public class ProfileService {
             if (c != null) {
                 c.setProfile(null);
             }
-            profileDao.delete(id);
+            profileDao.delete(p);
         }
     }
 

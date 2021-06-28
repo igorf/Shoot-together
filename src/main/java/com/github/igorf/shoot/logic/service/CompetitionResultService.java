@@ -77,6 +77,6 @@ public class CompetitionResultService {
     }
 
     public CompetitionResult getByID(Long id) {
-        return competitionResultDao.findOne(id);
+        return competitionResultDao.findById(id).orElse(null);
     }
 }

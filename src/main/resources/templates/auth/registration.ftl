@@ -58,7 +58,7 @@
         </div>
         <div class="form-group">
             <div class="col-lg-4 col-lg-offset-4">
-                <div class="g-recaptcha" data-sitekey="6LdIo0kUAAAAAOZsg5m8G_eJmuiwBoPPDZvstaMO"></div>
+                <div class="g-recaptcha" data-sitekey="6LdRKWIbAAAAAMRmkdSrU6gEmrmtZ1XxQxgx4vjr"></div>
             </div>
         </div>
 

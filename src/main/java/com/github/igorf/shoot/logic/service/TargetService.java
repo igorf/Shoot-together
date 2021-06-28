@@ -31,7 +31,7 @@ public class TargetService {
     }
 
     public Target updateTarget(long id, String title) {
-        Target target = targetDao.findOne(id);
+        Target target = targetDao.findById(id).orElse(null);
         if (target != null) {
             target.setTitle(title);
             try {
@@ -45,7 +45,7 @@ public class TargetService {
     }
 
     public TargetRing addRingToTarget(long targetId, int value, float diameter, RingColor color) {
-        Target target = targetDao.findOne(targetId);
+        Target target = targetDao.findById(targetId).orElse(null);
         if (target != null) {
             TargetRing ring = new TargetRing();
             ring.setDenomination(value);
@@ -64,7 +64,7 @@ public class TargetService {
     }
 
     public boolean removeTarget(long targetId) {
-        Target target = targetDao.findOne(targetId);
+        Target target = targetDao.findById(targetId).orElse(null);
         if (target != null) {
             try {
                 targetDao.delete(target);
@@ -77,6 +77,6 @@ public class TargetService {
     }
 
     public Iterable<Target> listToChoice() {
-        return targetDao.findAll(new Sort(Sort.Direction.ASC, "title"));
+        return targetDao.findAll(Sort.by(Sort.Direction.ASC, "title"));
     }
 }

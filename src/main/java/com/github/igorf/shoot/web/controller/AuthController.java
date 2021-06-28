@@ -6,7 +6,6 @@ import com.github.igorf.shoot.logic.service.ProfileService;
 import com.github.igorf.shoot.logic.validator.ProfileValidator;
 import com.github.mkopylec.recaptcha.validation.RecaptchaValidator;
 import com.github.mkopylec.recaptcha.validation.ValidationResult;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,10 +17,20 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class AuthController {
-    @Autowired private ProfileService profileService;
-    @Autowired private SecurityService securityService;
-    @Autowired private ProfileValidator profileValidator;
-    @Autowired private RecaptchaValidator recaptchaValidator;
+    private final ProfileService profileService;
+    private final SecurityService securityService;
+    private final ProfileValidator profileValidator;
+    private final RecaptchaValidator recaptchaValidator;
+
+    public AuthController(ProfileService profileService,
+                          SecurityService securityService,
+                          ProfileValidator profileValidator,
+                          RecaptchaValidator recaptchaValidator) {
+        this.profileService = profileService;
+        this.securityService = securityService;
+        this.profileValidator = profileValidator;
+        this.recaptchaValidator = recaptchaValidator;
+    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {

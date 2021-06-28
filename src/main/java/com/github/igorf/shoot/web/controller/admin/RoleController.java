@@ -42,7 +42,7 @@ public class RoleController {
 
     @RequestMapping("/view/{id}")
     public String view(Model model, @PathVariable("id") long id) {
-        model.addAttribute("role", roleDao.findOne(id));
+        model.addAttribute("role", roleDao.findById(id).orElse(null));
         return "/admin-role/edit";
     }
 

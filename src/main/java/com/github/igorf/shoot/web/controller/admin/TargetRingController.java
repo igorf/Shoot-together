@@ -29,7 +29,7 @@ public class TargetRingController {
     @RequestMapping("/delete/{id}")
     public String delete(@PathVariable("id") long id) {
         try {
-            TargetRing ring = targetRingDao.findOne(id);
+            TargetRing ring = targetRingDao.findById(id).orElse(null);
             if (ring != null) {
                 long targetId = ring.getTarget().getId();
                 targetRingDao.delete(ring);
@@ -43,13 +43,13 @@ public class TargetRingController {
 
     @RequestMapping("/create/{targetId}")
     public String create(Model model, @PathVariable("targetId") long targetId) {
-        model.addAttribute("target", targetDao.findOne(targetId));
+        model.addAttribute("target", targetDao.findById(targetId).orElse(null));
         return "ring/edit";
     }
 
     @RequestMapping("/view/{id}")
     public String update(Model model, @PathVariable("id") long id) {
-        TargetRing ring = targetRingDao.findOne(id);
+        TargetRing ring = targetRingDao.findById(id).orElse(null);
         model.addAttribute("target", ring.getTarget());
         model.addAttribute("ring", ring);
         return "ring/edit";
@@ -67,10 +67,10 @@ public class TargetRingController {
         Target target;
 
         if (ringId == -1) {
-            target = targetDao.findOne(targetId);
+            target = targetDao.findById(targetId).orElse(null);
             targetService.addRingToTarget(targetId, denomination, diameter, RingColor.values()[color]);
         } else {
-            ring = targetRingDao.findOne(ringId);
+            ring = targetRingDao.findById(ringId).orElse(null);
             ring.setDenomination(denomination);
             ring.setDiameter(diameter);
             ring.setColor(RingColor.values()[color]);

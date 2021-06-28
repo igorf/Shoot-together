@@ -15,8 +15,9 @@ public class RoleService {
     }
 
     public void deleteRoleByID(Long id) {
-        if (id != null) {
-            roleDao.delete(id);
+        Role role = roleDao.findById(id).orElse(null);
+        if (role != null) {
+            roleDao.delete(role);
         }
     }
 

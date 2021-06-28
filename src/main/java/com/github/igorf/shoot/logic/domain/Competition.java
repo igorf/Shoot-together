@@ -5,7 +5,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +26,7 @@ public class Competition {
     @NotNull
     private Date start;
     @NotNull
+    @Column(name = "finish")
     private Date end;
     @OneToMany(cascade=ALL, mappedBy="competition")
     private List<CompetitionResult> results;

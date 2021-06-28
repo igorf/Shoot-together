@@ -19,29 +19,33 @@ public class CompetitionService {
 
     public Competition createCompetition(String title, Long exerciseId, Date from, Date to) throws Exception {
         Competition competition = new Competition();
-        Exercise exercise = exerciseDao.findOne(exerciseId);
+        Exercise exercise = exerciseDao.findById(exerciseId).orElse(null);
         return saveCompetition(competition, title, exercise, from, to);
     }
 
     public void createMultiCompetition(String title, long[] exerciseIds, Date from, Date to) throws Exception {
         for (long exerciseId: exerciseIds) {
             Competition competition = new Competition();
-            Exercise exercise = exerciseDao.findOne(exerciseId);
+            Exercise exercise = exerciseDao.findById(exerciseId).orElse(null);
             saveCompetition(competition, title + " (" + exercise.getTitle() + ")", exercise, from, to);
         }
     }
 
     public Competition updateCompetition(Long competitionId, String title, Long exerciseId, Date from, Date to) throws Exception {
-        Competition competition = competitionDao.findOne(competitionId);
+        Competition competition = competitionDao.findById(competitionId).orElse(null);
         if (competition == null) {
             throw new Exception("Competition with ID " + competitionId + " not found");
         }
-        Exercise exercise = exerciseDao.findOne(exerciseId);
+        Exercise exercise = exerciseDao.findById(exerciseId).orElse(null);
         return saveCompetition(competition, title, exercise, from, to);
     }
 
     public void removeCompetition(long id) throws Exception {
-        competitionDao.delete(id);
+        Competition c = findById(id);
+
+        if (c != null) {
+            competitionDao.delete(c);
+        }
     }
 
     public Page<Competition> listPage(Pageable pageable) {
@@ -49,7 +53,7 @@ public class CompetitionService {
     }
 
     public Competition findById(long id) {
-        return competitionDao.findOne(id);
+        return competitionDao.findById(id).orElse(null);
     }
 
     private static void checkCompetitionBeforeSave(Competition competition) throws Exception {

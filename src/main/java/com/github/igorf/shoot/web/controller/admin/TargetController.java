@@ -45,7 +45,7 @@ public class TargetController {
 
     @RequestMapping("/view/{id}")
     public String view(Model model, @PathVariable("id") long id) {
-        model.addAttribute("target", targetDao.findOne(id));
+        model.addAttribute("target", targetDao.findById(id).orElse(null));
         return "/target/edit";
     }
 

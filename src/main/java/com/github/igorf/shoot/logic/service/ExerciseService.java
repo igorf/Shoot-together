@@ -30,7 +30,7 @@ public class ExerciseService {
             int shotsPerSeries,
             long targetId
     ) {
-        Target target = targetDao.findOne(targetId);
+        Target target = targetDao.findById(targetId).orElse(null);
         Exercise exercise = new Exercise();
         exercise.setTitle(title);
         exercise.setDescription(description);
@@ -62,8 +62,8 @@ public class ExerciseService {
             int shotsPerSeries,
             long targetId
     ) {
-        Target target = targetDao.findOne(targetId);
-        Exercise exercise = exerciseDao.findOne(id);
+        Target target = targetDao.findById(targetId).orElse(null);
+        Exercise exercise = exerciseDao.findById(id).orElse(null);
         if (exercise != null) {
             exercise.setTitle(title);
             exercise.setDescription(description);
@@ -86,7 +86,7 @@ public class ExerciseService {
 
     public void removeExercise(long id) {
         try {
-            exerciseDao.delete(id);
+            exerciseDao.delete(exerciseDao.findById(id).get());
         } catch (Exception ex) {
             logger.warning(ex.getMessage());
         }
@@ -97,10 +97,10 @@ public class ExerciseService {
     }
 
     public Exercise findById(long id) {
-        return exerciseDao.findOne(id);
+        return exerciseDao.findById(id).orElse(null);
     }
 
     public Iterable<Exercise> listToChoice() {
-        return exerciseDao.findAll(new Sort(Sort.Direction.ASC, "title"));
+        return exerciseDao.findAll(Sort.by(Sort.Direction.ASC, "title"));
     }
 }
